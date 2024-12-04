@@ -4,7 +4,7 @@ import { UserContext } from "../AuthProvider/AuthProvider";
 
 
 function Navbar() {
-  const {LogOut ,user} =useContext(UserContext)
+  const {LogOut ,user, isLoading} =useContext(UserContext)
 
     const navitems = <>
      <NavLink to={'/'}>
@@ -19,15 +19,7 @@ function Navbar() {
      <NavLink to={'/MyFavorites'}>
      <li><a>My Favorites</a></li>
      </NavLink>
-     {user? '' : <> 
-     <NavLink to={'/Register'}>
-     <li><a>Register</a></li>
-     </NavLink>
-     <NavLink to={'/Login'}>
-     <li><a>Login</a></li>
-     </NavLink>
-     </>
-      }
+    
     </>
 
 
@@ -89,11 +81,18 @@ const HandelLogOut = () => {
           
           LogOut
         </button>
-      ) : (
-        <Link to="/Login" className="py-3 px-5 rounded-lg bg-blue-500 text-white text-xs md:text-base">
+      ) : !isLoading? <>
+        <div className="">
+        <Link to="/Login" className="py-3 mr-2 px-5 rounded-lg bg-blue-500 text-white text-xs md:text-base">
           login
         </Link>
-      )}
+        <Link to="/Register" className="py-3 px-5 rounded-lg bg-orange-500 text-white text-xs md:text-base">
+          register
+        </Link>
+        </div>
+       </> : "loading..."
+      
+      }
 
     </div>
   </div>

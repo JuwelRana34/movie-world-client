@@ -3,4 +3,26 @@
    color: #fff;
    border-radius: 5px;  
 }
+#login{
+    background-image: url(/public/images/login.jpg);
+    background-color: 0,0, 0, 0.3;
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+}
+#register{
+    background-image: url(/public/images/loginbg.jpg);
+    background-color: 0,0, 0, 0.3;
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+}
+svg.star-svg {
+    display: inline;
+    }
+
+    .addmovie input , select, textarea{
+        width: 100%;
+        margin: 10px 0;
+    }
 

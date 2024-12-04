@@ -9,6 +9,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [isvisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+
   const HandelsignUp = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -35,13 +36,26 @@ function Register() {
       });
   };
 
+  const HandelSignUpWithGoogle = () => {
+    SignInWithGoogle()
+     .then(() => {
+        toast.success("registration successful!");
+        setLoading(false);
+        navigate('/')
+      })
+     .catch((error) => {
+        toast.error(` ${error}`);
+        setLoading(false);
+      });
+  }
+
   const handelPassIcon = () => {
     setIsVisible((icon) => !icon);
   };
 
   return (
     <>
-      <div className=' py-2 bg-[url("../../public/images/loginbg.jpg")]  bg-blend-overlay bg-black/50  object-cover object-center obj '>
+      <div id="register" className=' py-1 '>
         <div className=" my-10 border-gray-400  bg-black/80 rounded-lg md:w-1/2 mx-auto p-4">
           <h1 className="text-center text-white my-4 capitalize font-bold text-xl">
             registration
@@ -156,7 +170,7 @@ function Register() {
           <div className=" w-full  flex justify-center">
             <button
               className=" text-md font-semibold backdrop-blur-lg bg-black/50 border-gray-500 border   text-white capitalize flex  items-center gap-3 rounded-lg my-5 py-2 px-3"
-              onClick={SignInWithGoogle}
+              onClick={HandelSignUpWithGoogle}
             >
               <img
                 className="w-7"

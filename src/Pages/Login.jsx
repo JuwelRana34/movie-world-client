@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "sonner";
 
+
 function Login() {
   const { signin, SignInWithGoogle } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
@@ -21,16 +22,19 @@ function Login() {
         e.target.reset();
         setLoading(false);
         navigate("/");
+        toast.success("login successful")
       })
       .catch((error) => {
         console.error("Error signing in:", error);
         setLoading(false);
+        toast.error(` ${error}`);
       });
   };
   const HandelGoogleLogin = () => {
     SignInWithGoogle()
       .then(() => {
         toast.success("login successful");
+        navigate("/");
       })
       .catch((err) => {
         toast.error(`${err}`);
@@ -41,7 +45,7 @@ function Login() {
     setIsVisible((icon) => !icon);
   };
   return (
-    <div className="py-12 bg-blend-overlay bg-black/30 bg-[url('../../public/images/login.jpg')] object-cover object-center">
+    <div id="login" className="py-12 ">
       <div className="  flex justify-center items-center mt-10">
         <div className="card bg-base-100 backdrop-blur-sm bg-black/50  rounded-lg border border-gray-500 w-full max-w-sm shrink-0 shadow-md">
           <h1 className=" bg-clip-text text-transparent bg-gradient-to-tr from-gray-200 to-white font-bold text-3xl text-center mt-5">
