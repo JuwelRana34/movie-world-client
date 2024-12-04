@@ -11,12 +11,12 @@ import {
 import { Auth } from "../../firebase.config";
 import { toast } from "sonner";
 
-// Create a context for user information
-export const UserContext = createContext();
-const AuthProvider = ({ children }) => {
 
-  const [user, setUser] = useState(null)
-  const [isLoading , setIsloading] = useState(true)
+export const UserContext = createContext();
+// eslint-disable-next-line react/prop-types
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsloading] = useState(true);
 
   const GoogleProvider = new GoogleAuthProvider();
 
@@ -31,34 +31,34 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(Auth, email, password);
   };
 
-  const LogOut = ()=>{
+  const LogOut = () => {
     signOut(Auth)
-     .then(()=>{
-       setIsloading(false)
-       setUser(null);
-       toast.warning('Logged Out Successfully')
+      .then(() => {
+        setIsloading(false);
+        setUser(null);
+        toast.warning("Logged Out Successfully");
       })
-      .catch((err)=> {
-       toast.error(err)
-      })
-      
-  }
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
 
-  const UpdateProfile = async ( name , photo)=>{
-    if(!Auth.currentUser){
-        toast.error('You are not user please log in before this action')
-        return;
+  const UpdateProfile = async (name, photo) => {
+    if (!Auth.currentUser) {
+      toast.error("You are not user please log in before this action");
+      return;
     }
-    try{
-      await updateProfile(Auth.currentUser, { displayName: name, photoURL: photo})
-      setUser({...Auth.currentUser, displayName: name, photoURL: photo})
+    try {
+      await updateProfile(Auth.currentUser, {
+        displayName: name,
+        photoURL: photo,
+      });
+      setUser({ ...Auth.currentUser, displayName: name, photoURL: photo });
     } catch (e) {
-      toast.error(e.message)
+      toast.error(e.message);
       console.error(e);
     }
-      
-     
-   }
+  };
 
   useEffect(() => {
     const Unsubscribe = onAuthStateChanged(Auth, (user) => {
@@ -75,7 +75,6 @@ const AuthProvider = ({ children }) => {
     };
   }, [user]);
 
-
   const AuthInfo = {
     signin,
     signUp,
@@ -83,8 +82,7 @@ const AuthProvider = ({ children }) => {
     user,
     isLoading,
     LogOut,
-    UpdateProfile
-
+    UpdateProfile,
   };
 
   return (
