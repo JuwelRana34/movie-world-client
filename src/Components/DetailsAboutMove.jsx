@@ -1,16 +1,18 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { GiSandsOfTime } from "react-icons/gi"
-import { Link, useParams } from "react-router"
+
+import { Link, useNavigate, useParams } from "react-router"
 import { Rating } from "react-simple-star-rating"
 import doc from '../../public/images/doc.gif'
 import video from '../../public/images/video-player.gif'
+import { toast } from "sonner"
+
 
 function DetailsAboutMove() {
  const {id} = useParams()
  const [moviedata, setMovieData] = useState({})
  const [rating, setRating] = useState(0)
-
+ const navigate = useNavigate()
  useEffect(() =>{
     const movieDetails = ()=>{
         axios.get(`http://localhost:3000/MoviesDtail/${id}`)
@@ -22,6 +24,14 @@ function DetailsAboutMove() {
     movieDetails()
  },[id])
 
+  const handelDelete = (id) => {
+   axios.delete(`http://localhost:3000/MoviesDtail/${id}`)
+   .then(() =>{
+     toast.success("movie deleted successfully");
+     navigate("/AllMovies")
+   })
+   .catch(err => console.log(err))
+  };
 
      
   return (
@@ -56,11 +66,14 @@ function DetailsAboutMove() {
        <span className="font-bold">  </span> Release Year: {moviedata.ReleaseYear} 
       </p>
       <hr  className=" border-gray-500"  />
-     <p className="text-gray-600  font-semibold text-lg py-4 flex items-center">
-       <span className="font-bold">  </span> Genre: {moviedata.genres} 
+     <p className="text-gray-600 space-x-1  font-semibold text-lg py-4 flex items-center">
+       <span className="px-2">Genre:</span>   {moviedata?.genres?.map((i,index) => <p className="" key={index}> {i} , </p>)} 
       </p>
-      <hr  className=" border-gray-500"  />
-
+      <hr  className=" border-gray-500 "  />
+     <div className="my-4 space-x-2">
+        <button onClick={()=>handelDelete(moviedata._id)} className="btn btn-primary">Delete Movie</button>
+        <button className="btn btn-primary">Add to Favorite</button>
+     </div>
       
     </div>
   </div>
