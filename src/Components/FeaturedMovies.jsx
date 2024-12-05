@@ -1,23 +1,23 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from "axios"
+import { useEffect, useState } from "react"
 
-function AllMovies() {
-  const [movies, setMovies] = useState([]);
+function FeaturedMovies() {
+    const [featuredMovies , setFeaturedMovies]= useState([])
 
-  useEffect(() => {
-    const movies = () => {
-      axios
-        .get("http://localhost:3000/")
-        .then((res) => setMovies(res.data))
-        .catch((err) => console.log(err));
-    };
-    movies();
-  }, []);
-  console.log(movies);
+    useEffect(()=>{
+        const FeaturedMovies = ()=>{
+            axios.get('http://localhost:3000/featuredMovies')
+            .then(res=>{
+                setFeaturedMovies(res.data)
+            }).catch( (err)=> console.error(err))
+        }
+        FeaturedMovies()
+    },[])
+
 
   return (
     <div className=" mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {movies.map((movie) => {
+      {featuredMovies.map((movie) => {
         return (
           <div key={movie._id} className="movie-details text-center border">
             <h1 className="text-center text-xl font-bold py-2 text-blue-500">
@@ -37,10 +37,7 @@ function AllMovies() {
                 <strong>Release Year: </strong>
                 {movie.ReleaseYear}
               </p>
-              <p className="text-justify">
-                <strong>Summary: </strong>
-                {movie.Summary}
-              </p>
+              
               <p>
                 <strong>Rating: </strong> {movie.rating}/5
               </p>
@@ -53,12 +50,12 @@ function AllMovies() {
               </ul>
             </div>
 
-           
+           <button className="btn  btn-success text-white my-2">See Details</button>
           </div>
         );
       })}
     </div>
-  );
+  )
 }
 
-export default AllMovies;
+export default FeaturedMovies

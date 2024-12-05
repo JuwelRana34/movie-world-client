@@ -12,7 +12,7 @@ function Home() {
     <Carosel/>
     <div className=" container mx-auto">
       <h1 className=" font-bold text-2xl">FeaturedMovies: </h1>
-      {/* <FeaturedMovies/> */}
+      <FeaturedMovies/>
     </div>
     </>
   );
