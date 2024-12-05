@@ -25,4 +25,32 @@ svg.star-svg {
         width: 100%;
         margin: 10px 0;
     }
+body{
+    font-family: "Lato", sans-serif;
+}
 
+/* carsole css */
+
+
+
+
+.swiper {
+  width: 90%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 500px;
+  object-position: center;
+  object-fit: cover;
+}
