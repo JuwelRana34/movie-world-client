@@ -1,11 +1,12 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import { Link, useNavigate, useParams } from "react-router"
 import { Rating } from "react-simple-star-rating"
 import doc from '../../public/images/doc.gif'
 import video from '../../public/images/video-player.gif'
 import { toast } from "sonner"
+import { UserContext } from "../AuthProvider/AuthProvider"
 
 
 function DetailsAboutMove() {
@@ -13,6 +14,8 @@ function DetailsAboutMove() {
  const [moviedata, setMovieData] = useState({})
  const [rating, setRating] = useState(0)
  const navigate = useNavigate()
+ const {user} = useContext(UserContext)
+
  useEffect(() =>{
     const movieDetails = ()=>{
         axios.get(`http://localhost:3000/MoviesDtail/${id}`)
@@ -32,6 +35,14 @@ function DetailsAboutMove() {
    })
    .catch(err => console.log(err))
   };
+
+  const handelAddFavorite = (movieData) => {
+          axios.post('http://localhost:3000/favoriteMovies', {...movieData, email:user.email})
+         .then((res) => {
+            toast.success("movie added to favorite successfully");
+            console.log(res)
+         }).catch((err) => console.log(err));
+  }
 
      
   return (
@@ -72,7 +83,7 @@ function DetailsAboutMove() {
       <hr  className=" border-gray-500 "  />
      <div className="my-4 space-x-2">
         <button onClick={()=>handelDelete(moviedata._id)} className="btn btn-primary">Delete Movie</button>
-        <button className="btn btn-primary">Add to Favorite</button>
+        <button onClick={()=>handelAddFavorite(moviedata)} className="btn btn-primary">Add to Favorite</button>
      </div>
       
     </div>
