@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FaStar } from "react-icons/fa6";
 
 function AllMovies() {
   const [movies, setMovies] = useState([]);
@@ -41,8 +42,8 @@ function AllMovies() {
                 <strong>Summary: </strong>
                 {movie.Summary}
               </p>
-              <p>
-                <strong>Rating: </strong> {movie.rating}/5
+              <p className="flex items-center gap-1 font-semibold">
+                <strong>Rating: </strong> <FaStar className="text-orange-500 text-xl"/> {movie.rating}/5
               </p>
 
               <ul className="flex justify-start gap-3">

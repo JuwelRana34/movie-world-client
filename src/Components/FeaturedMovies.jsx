@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-
+import { Link } from "react-router"
+import { FaStar } from "react-icons/fa6";
 function FeaturedMovies() {
     const [featuredMovies , setFeaturedMovies]= useState([])
 
@@ -38,8 +39,8 @@ function FeaturedMovies() {
                 {movie.ReleaseYear}
               </p>
               
-              <p>
-                <strong>Rating: </strong> {movie.rating}/5
+              <p className="flex items-center gap-2">
+                <strong>Rating:  </strong> <FaStar className="text-orange-500 text-xl"/> {movie.rating}/5
               </p>
 
               <ul className="flex justify-start gap-3">
@@ -49,8 +50,9 @@ function FeaturedMovies() {
                 ))}
               </ul>
             </div>
+            
 
-           <button className="btn  btn-success text-white my-2">See Details</button>
+           <Link to={`/detailMovie/${movie._id}`} className="btn  btn-success text-white my-2">See Details</Link>
           </div>
         );
       })}
