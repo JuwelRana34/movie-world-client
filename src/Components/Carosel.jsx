@@ -1,21 +1,18 @@
-i
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-
-// import './styles.css';
-
-// import required modules
 import { EffectCoverflow, Pagination } from 'swiper/modules';
-
+import f from '../../public/images/f.jpg'
+import j from '../../public/images/j.jpg'
+import n from '../../public/images/n.jpg'
 
 function Carosel() {
   return (
-    <Swiper
+    
+
+    <Swiper 
+    
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
@@ -32,13 +29,13 @@ function Carosel() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className='h-[500px]' src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img className='h-[500px]' src={f} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <img src={j} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          <img src={n} />
         </SwiperSlide>
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
@@ -46,19 +43,10 @@ function Carosel() {
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
+       
+       
       </Swiper>
+   
   )
 }
 

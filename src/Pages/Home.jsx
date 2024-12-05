@@ -1,8 +1,6 @@
-import { useContext, useState } from "react";
 
-// import axios from "axios";
-import { toast } from "sonner";
 import Carosel from "../Components/Carosel";
+import FeaturedMovies from "../Components/FeaturedMovies";
 
 function Home() {
 
@@ -12,6 +10,10 @@ function Home() {
   return (
     <>
     <Carosel/>
+    <div className=" container mx-auto">
+      <h1 className=" font-bold text-2xl">FeaturedMovies: </h1>
+      {/* <FeaturedMovies/> */}
+    </div>
     </>
   );
 }

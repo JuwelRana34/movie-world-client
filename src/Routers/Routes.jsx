@@ -7,6 +7,7 @@ import MyFavorites from "../Pages/MyFavorites";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivetRoutes from "../Components/PrivetRoutes";
+import Notfound from "../Pages/Notfound";
 
 const AppRoute = () => {
   return(
@@ -19,6 +20,7 @@ const AppRoute = () => {
       <Route path="Login" element={<Login />} />
       <Route path="Register" element={<Register />} />
     </Route>
+    <Route path="/*" element={<Notfound/> } />
   </Routes>
   )
 }
