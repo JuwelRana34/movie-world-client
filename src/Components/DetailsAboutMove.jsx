@@ -36,12 +36,27 @@ function DetailsAboutMove() {
    .catch(err => console.log(err))
   };
 
-  const handelAddFavorite = (movieData) => {
-          axios.post('http://localhost:3000/favoriteMovies', {...movieData, email:user.email})
-         .then((res) => {
-            toast.success("movie added to favorite successfully");
-            console.log(res)
-         }).catch((err) => console.log(err));
+  const handelAddFavorite = async (movieData) => {
+   await axios.get(`http://localhost:3000/favoriteMovies`)
+    .then((res) => {  
+        const favoriteMovies = res.data.filter((movie) => movie.Title === movieData.Title  && movie.email === movieData.email);
+
+        if (favoriteMovies.length === 0) {
+          axios.post('http://localhost:3000/favoriteMovies', {...movieData, email:user.email })
+            .then((res) => {
+               toast.success("movie added to favorite successfully");
+               console.log(res)
+            }).catch((err) => console.log(err));
+        } else {
+          toast.error("This movie is already in your favorite list");
+          return
+        }
+  
+    })
+
+
+
+         
   }
 
      
@@ -84,6 +99,7 @@ function DetailsAboutMove() {
      <div className="my-4 space-x-2">
         <button onClick={()=>handelDelete(moviedata._id)} className="btn btn-primary">Delete Movie</button>
         <button onClick={()=>handelAddFavorite(moviedata)} className="btn btn-primary">Add to Favorite</button>
+        <Link to={`/UpdateMovie/${moviedata._id}`} className="btn btn-primary">Update movie</Link>
      </div>
       
     </div>

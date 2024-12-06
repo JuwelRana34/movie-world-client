@@ -1,24 +1,46 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Rating } from "react-simple-star-rating";
 import Select from "react-select";
 import { UserContext } from "../AuthProvider/AuthProvider";
+import { useParams } from "react-router";
+import axios from "axios";
+
 
 const genres = [
-  { value: "Action", label: "Action" },
-  { value: "comedy", label: "comedy" },
-  { value: "drama", label: "drama" },
-  { value: "horror", label: "horror" },
-  { value: "Romance", label: "Romance" },
-];
-function AddMovie() {
-  const { user } = useContext(UserContext);
+    { value: "Action", label: "Action" },
+    { value: "comedy", label: "comedy" },
+    { value: "drama", label: "drama" },
+    { value: "horror", label: "horror" },
+    { value: "Romance", label: "Romance" },
+  ];
 
+function UpdateMovie() {
+const {id}= useParams()
+ const { user } = useContext(UserContext);
+const [movieData , setMovieData]= useState()
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
   const [selectedOption, setSelectedOption] = useState([]);
   const genreValues = selectedOption.map((option) => option.value);
+
+  const genre = movieData?.genres.map((genre) =>({ value: genre, label: genre })) || [];
+
+  console.log(genre)
+  console.log(movieData?.genres)
+  console.log(genres)
+  useEffect(() =>{
+    const updatedMovieData = ()=>{
+        if(!id) return
+        axios.get(`http://localhost:3000/MoviesDtail/${id}`)
+        .then(res=>{
+            setMovieData(res.data)
+            setRating(res.data.rating)
+        }).catch(err=> console.log(err))
+    }
+    updatedMovieData()
+  },[id])
 
   const {
     register,
@@ -27,7 +49,7 @@ function AddMovie() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit =  (data) => {
     setLoading(true);
 
     const movieData = {
@@ -68,32 +90,38 @@ function AddMovie() {
       return;
     }
 
-    try {
-      const response = await fetch(`http://localhost:3000/addmovie`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(movieData),
-      });
-      if (response.ok) {
-        toast.success("new movie added successfully");
-        setSelectedOption([]); // Reset the genre selection
-        setRating(0);
-        reset();
-        setLoading(false);
-      }
-    } catch (error) {
-      toast.error(error);
-      toast.error(`${error} - failed to add new movie`);
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
+  
+        axios.patch(`http://localhost:3000/updateMovie/${id}`, movieData)
+        .then((res)=>{
+            toast.success("movie updated successfully");
+            setSelectedOption([]); 
+            setRating(0);
+            reset();
+            setLoading(false);
+            console.log(res.data)
+        })
+       
+
+       
+        
+
+    //   if (response.status === 200) {
+    //     toast.success("movie updated successfully");
+    //     setSelectedOption([]); 
+    //     setRating(0);
+    //     reset();
+    //     setLoading(false);
+    //   }
+  
+    //   toast.error(error);
+    //   toast.error(`${error} - failed update movie`);
+    //   setLoading(false);
+  
+
   };
 
   return (
-    <div className="w-[80%] mt-8 mx-auto">
+   <div className="w-[80%] mt-8 mx-auto">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="md:grid grid-cols-1 items-center md:grid-cols-2 gap-5 addmovie"
@@ -102,6 +130,7 @@ function AddMovie() {
           placeholder="movie poster image link"
           className="border p-2 rounded "
           required
+          defaultValue={movieData?.Poster}
           {...register("Poster", { required: true })}
         />
         <div>
@@ -109,6 +138,7 @@ function AddMovie() {
             placeholder="Movie title"
             className="border p-2 rounded"
             required
+            defaultValue={movieData?.Title}
             {...register("Title", {
               required: true,
               minLength: {
@@ -125,6 +155,7 @@ function AddMovie() {
         <Select
           isMulti
           name="genres"
+          defaultValue={genre}
           value={selectedOption}
           options={genres}
           onChange={(options) => setSelectedOption(options)}
@@ -137,6 +168,7 @@ function AddMovie() {
           placeholder="Duration"
           className="border p-2 rounded"
           required
+          defaultValue={movieData?.Duration}
           type="number"
           {...register("Duration", { required: true, type: "number" })}
         />
@@ -153,6 +185,7 @@ function AddMovie() {
           <h1>Rating:</h1>
           <Rating
             className="flex"
+            initialValue={movieData?.rating}
             onClick={(rate) => setRating(rate)}
             ratingValue={rating}
           />
@@ -162,6 +195,7 @@ function AddMovie() {
           placeholder="Summary..."
           className="border p-2 rounded col-span-2 "
           required
+          defaultValue={movieData?.Summary}
           {...register("Summary", {
             required: true,
             minLength: {
@@ -186,7 +220,7 @@ function AddMovie() {
         </button>
       </form>
     </div>
-  );
+  )
 }
 
-export default AddMovie;
+export default UpdateMovie

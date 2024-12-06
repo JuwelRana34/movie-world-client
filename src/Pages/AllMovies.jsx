@@ -1,20 +1,28 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
-
+import Loading from './Loading'
+import { Link } from "react-router";
 function AllMovies() {
   const [movies, setMovies] = useState([]);
+  const [loadingdata, setLoadingData] = useState(true);
 
   useEffect(() => {
     const movies = () => {
       axios
-        .get("http://localhost:3000/")
-        .then((res) => setMovies(res.data))
+        .get("https://movieworld-ochre.vercel.app/")
+        .then((res) =>{
+           setMovies(res.data)
+           setLoadingData(false)
+          })
         .catch((err) => console.log(err));
     };
     movies();
   }, []);
   console.log(movies);
+  if(loadingdata){
+    return <Loading/>
+  }
 
   return (
     <div className=" mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -53,7 +61,7 @@ function AllMovies() {
                 ))}
               </ul>
             </div>
-
+            <Link to={`/detailMovie/${movie._id}`} className="btn  btn-success text-white my-2">See Details</Link>
            
           </div>
         );

@@ -77,12 +77,12 @@ const HandelLogOut = () => {
 
 
       {user ? (
-        <button onClick={HandelLogOut} className=" py-3 px-3 rounded-lg bg-red-500 text-white text-xs md:text-base">
+        <button onClick={HandelLogOut} className=" py-2 px-3 rounded-lg bg-rose-500 font-semibold text-white text-xs md:text-base">
           
           LogOut
         </button>
       ) : !isLoading? <>
-        <div className="">
+        <div className=" font-semibold">
         <Link to="/Login" className="py-3 mr-2 px-5 rounded-lg bg-blue-500 text-white text-xs md:text-base">
           login
         </Link>
