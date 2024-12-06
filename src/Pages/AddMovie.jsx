@@ -69,13 +69,16 @@ function AddMovie() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/addmovie`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(movieData),
-      });
+      const response = await fetch(
+        `https://movieworld-ochre.vercel.app/addmovie`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(movieData),
+        }
+      );
       if (response.ok) {
         toast.success("new movie added successfully");
         setSelectedOption([]); // Reset the genre selection

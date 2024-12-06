@@ -7,7 +7,7 @@ import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md"
 function Footer() {
   return (
     <div id='footer'>
-    <footer className="footer bg-transparent text-gray-600  p-10">
+    <footer className="footer mt-5 bg-transparent text-gray-600  p-10">
     <nav>
       <h6 className="footer-title">Services</h6>
       <a className="link link-hover">

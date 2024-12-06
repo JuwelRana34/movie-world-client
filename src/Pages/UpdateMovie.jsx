@@ -7,40 +7,42 @@ import { UserContext } from "../AuthProvider/AuthProvider";
 import { useParams } from "react-router";
 import axios from "axios";
 
-
 const genres = [
-    { value: "Action", label: "Action" },
-    { value: "comedy", label: "comedy" },
-    { value: "drama", label: "drama" },
-    { value: "horror", label: "horror" },
-    { value: "Romance", label: "Romance" },
-  ];
+  { value: "Action", label: "Action" },
+  { value: "comedy", label: "comedy" },
+  { value: "drama", label: "drama" },
+  { value: "horror", label: "horror" },
+  { value: "Romance", label: "Romance" },
+];
 
 function UpdateMovie() {
-const {id}= useParams()
- const { user } = useContext(UserContext);
-const [movieData , setMovieData]= useState()
+  const { id } = useParams();
+  const { user } = useContext(UserContext);
+  const [movieData, setMovieData] = useState();
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
   const [selectedOption, setSelectedOption] = useState([]);
   const genreValues = selectedOption.map((option) => option.value);
 
-  const genre = movieData?.genres.map((genre) =>({ value: genre, label: genre })) || [];
+  const genre =
+    movieData?.genres.map((genre) => ({ value: genre, label: genre })) || [];
 
-  console.log(genre)
-  console.log(movieData?.genres)
-  console.log(genres)
-  useEffect(() =>{
-    const updatedMovieData = ()=>{
-        if(!id) return
-        axios.get(`http://localhost:3000/MoviesDtail/${id}`)
-        .then(res=>{
-            setMovieData(res.data)
-            setRating(res.data.rating)
-        }).catch(err=> console.log(err))
-    }
-    updatedMovieData()
-  },[id])
+  console.log(genre);
+  console.log(movieData?.genres);
+  console.log(genres);
+  useEffect(() => {
+    const updatedMovieData = () => {
+      if (!id) return;
+      axios
+        .get(`https://movieworld-ochre.vercel.app/MoviesDtail/${id}`)
+        .then((res) => {
+          setMovieData(res.data);
+          setRating(res.data.rating);
+        })
+        .catch((err) => console.log(err));
+    };
+    updatedMovieData();
+  }, [id]);
 
   const {
     register,
@@ -49,7 +51,7 @@ const [movieData , setMovieData]= useState()
     formState: { errors },
   } = useForm();
 
-  const onSubmit =  (data) => {
+  const onSubmit = (data) => {
     setLoading(true);
 
     const movieData = {
@@ -90,38 +92,32 @@ const [movieData , setMovieData]= useState()
       return;
     }
 
-  
-        axios.patch(`http://localhost:3000/updateMovie/${id}`, movieData)
-        .then((res)=>{
-            toast.success("movie updated successfully");
-            setSelectedOption([]); 
-            setRating(0);
-            reset();
-            setLoading(false);
-            console.log(res.data)
-        })
-       
-
-       
-        
+    axios
+      .patch(`https://movieworld-ochre.vercel.app/updateMovie/${id}`, movieData)
+      .then((res) => {
+        toast.success("movie updated successfully");
+        setSelectedOption([]);
+        setRating(0);
+        reset();
+        setLoading(false);
+        console.log(res.data);
+      });
 
     //   if (response.status === 200) {
     //     toast.success("movie updated successfully");
-    //     setSelectedOption([]); 
+    //     setSelectedOption([]);
     //     setRating(0);
     //     reset();
     //     setLoading(false);
     //   }
-  
+
     //   toast.error(error);
     //   toast.error(`${error} - failed update movie`);
     //   setLoading(false);
-  
-
   };
 
   return (
-   <div className="w-[80%] mt-8 mx-auto">
+    <div className="w-[80%] mt-8 mx-auto">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="md:grid grid-cols-1 items-center md:grid-cols-2 gap-5 addmovie"
@@ -220,7 +216,7 @@ const [movieData , setMovieData]= useState()
         </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default UpdateMovie
+export default UpdateMovie;

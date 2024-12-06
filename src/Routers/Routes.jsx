@@ -10,7 +10,7 @@ import PrivetRoutes from "../Components/PrivetRoutes";
 import Notfound from "../Pages/Notfound";
 import DetailsAboutMove from "../Components/DetailsAboutMove";
 import UpdateMovie from "../Pages/UpdateMovie";
-import News from "../Pages/News";
+import Subscribe from "../Pages/Subscribe";
 
 const AppRoute = () => {
   return(
@@ -22,7 +22,7 @@ const AppRoute = () => {
       <Route path="MyFavorites" element={<PrivetRoutes><MyFavorites /> </PrivetRoutes> } />
       <Route path="Login" element={<Login />} />
       <Route path="Register" element={<Register />} />
-      <Route path="news" element={<News />} />
+      <Route path="Subscribe" element={<Subscribe />} />
       <Route path="UpdateMovie/:id" element={<PrivetRoutes><UpdateMovie /></PrivetRoutes>} />
       <Route path="detailMovie/:id" element={<PrivetRoutes> < DetailsAboutMove/> </PrivetRoutes>} />
       

@@ -24,7 +24,7 @@ function AllMovies() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000?scarchMove=${scarch}`)
+      .get(`https://movieworld-ochre.vercel.app?scarchMove=${scarch}`)
       .then(({ data }) => setMovies(data));
   }, [scarch]);
 

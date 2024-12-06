@@ -3,33 +3,39 @@ import { UserContext } from "../AuthProvider/AuthProvider";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { toast } from "sonner";
+import Loading from "./Loading";
 
 function MyFavorites() {
   const { user } = useContext(UserContext);
   const [FavoritesMovies, setFavoritesMovies] = useState([]);
+  const [loadingdata, setLoadingdata] = useState(true);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/favoriteMovies`)
+      .get(`https://movieworld-ochre.vercel.app/favoriteMovies`)
       .then(({ data }) => {
         const MyFavoritesMovie = data.filter(
           (move) => move.email === user.email
         );
         setFavoritesMovies(MyFavoritesMovie);
+        setLoadingdata(false);
       })
       .catch((error) => console.error(error));
   }, [user.email]);
 
   const handelDeleteFavorite = (id) => {
-    axios.delete(`http://localhost:3000/favoriteMoveDelete/${id}`)
-    .then(() =>{
-      toast.success("successfully deleted movie from favorite list ");
-      setFavoritesMovies(FavoritesMovies.filter((m) => m._id!== id));
-     
-    })
-    .catch(err => console.log(err))
-   };
+    axios
+      .delete(`https://movieworld-ochre.vercel.app/favoriteMoveDelete/${id}`)
+      .then(() => {
+        toast.success("successfully deleted movie from favorite list ");
+        setFavoritesMovies(FavoritesMovies.filter((m) => m._id !== id));
+      })
+      .catch((err) => console.log(err));
+  };
 
+  if (loadingdata) {
+    return <Loading />;
+  }
 
   return (
     <div className=" mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -69,7 +75,12 @@ function MyFavorites() {
                 ))}
               </ul>
             </div>
-            <button onClick={()=>handelDeleteFavorite(movie._id)} className="btn btn-primary">Delete Favorite</button>
+            <button
+              onClick={() => handelDeleteFavorite(movie._id)}
+              className="btn btn-primary"
+            >
+              Delete Favorite
+            </button>
           </div>
         );
       })}

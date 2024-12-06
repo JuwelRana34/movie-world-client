@@ -1,20 +1,21 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { Link } from "react-router"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { FaStar } from "react-icons/fa6";
 function FeaturedMovies() {
-    const [featuredMovies , setFeaturedMovies]= useState([])
+  const [featuredMovies, setFeaturedMovies] = useState([]);
 
-    useEffect(()=>{
-        const FeaturedMovies = ()=>{
-            axios.get('http://localhost:3000/featuredMovies')
-            .then(res=>{
-                setFeaturedMovies(res.data)
-            }).catch( (err)=> console.error(err))
-        }
-        FeaturedMovies()
-    },[])
-
+  useEffect(() => {
+    const FeaturedMovies = () => {
+      axios
+        .get("https://movieworld-ochre.vercel.app/featuredMovies")
+        .then((res) => {
+          setFeaturedMovies(res.data);
+        })
+        .catch((err) => console.error(err));
+    };
+    FeaturedMovies();
+  }, []);
 
   return (
     <div className=" mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -38,9 +39,10 @@ function FeaturedMovies() {
                 <strong>Release Year: </strong>
                 {movie.ReleaseYear}
               </p>
-              
+
               <p className="flex items-center gap-2">
-                <strong>Rating:  </strong> <FaStar className="text-orange-500 text-xl"/> {movie.rating}/5
+                <strong>Rating: </strong>{" "}
+                <FaStar className="text-orange-500 text-xl" /> {movie.rating}/5
               </p>
 
               <ul className="flex justify-start gap-3">
@@ -50,14 +52,18 @@ function FeaturedMovies() {
                 ))}
               </ul>
             </div>
-            
 
-           <Link to={`/detailMovie/${movie._id}`} className="btn  btn-success text-white my-2">See Details</Link>
+            <Link
+              to={`/detailMovie/${movie._id}`}
+              className="btn  btn-success text-white my-2"
+            >
+              See Details
+            </Link>
           </div>
         );
       })}
     </div>
-  )
+  );
 }
 
-export default FeaturedMovies
+export default FeaturedMovies;

@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Link, NavLink } from "react-router"
+import { useContext, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router"
 import { UserContext } from "../AuthProvider/AuthProvider";
 
 
@@ -19,11 +19,29 @@ function Navbar() {
      <NavLink to={'/MyFavorites'}>
      <li><a>My Favorites</a></li>
      </NavLink>
-     <NavLink to={'/news'}>
-     <li><a>news</a></li>
+     <NavLink to={'/Subscribe'}>
+     <li><a>Subscribe</a></li>
      </NavLink>
     
     </>
+
+const location = useLocation();
+ 
+useEffect(() => {
+  const Titles = {
+    "/": "Home | movie-world",
+    "/AllMovies": "AllMovies| movie-world",
+    "/Login": "Login | movie-world",
+    "/AddMovie": "AddMovie | movie-world",
+    "/MyFavorites": "MyFavorites | movie-world",
+    "/passwordReset": "passwordReset | movie-world",
+    "/Register": "Register | movie-world",
+  };
+
+  const basePath = location.pathname.split("/")[1]
+
+  document.title = Titles[location.pathname] || Titles[`/${basePath}`] || "movie-world";
+}, [location]);
 
 
 const HandelLogOut = () => {
@@ -93,7 +111,18 @@ const HandelLogOut = () => {
           register
         </Link>
         </div>
-       </> : "loading..."
+       </> : <>
+       <div className="flex w-40 flex-col gap-4">
+  <div className="flex items-center gap-4">
+    <div className="skeleton h-10 w-10 shrink-0 rounded-full"></div>
+    <div className="flex flex-col gap-4">
+      <div className="skeleton h-4 w-16"></div>
+      <div className="skeleton h-4 w-20"></div>
+    </div>
+  </div>
+
+</div>
+       </>
       
       }
 
