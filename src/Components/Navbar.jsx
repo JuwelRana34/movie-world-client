@@ -19,6 +19,9 @@ function Navbar() {
      <NavLink to={'/MyFavorites'}>
      <li><a>My Favorites</a></li>
      </NavLink>
+     <NavLink to={'/news'}>
+     <li><a>news</a></li>
+     </NavLink>
     
     </>
 
@@ -53,7 +56,7 @@ const HandelLogOut = () => {
           {navitems}
         </ul>
       </div>
-      <Link to={'/'} className="btn text-transparent bg-clip-text bg-gradient-to-l text-base from-red-500 to-orange-500 btn-ghost px-1 font-bold   md:text-2xl">Move world</Link>
+      <Link to={'/'} id="wname" className="btn text-transparent bg-clip-text bg-gradient-to-l text-base from-red-500 to-orange-500 btn-ghost px-1 font-bold   md:text-2xl">Movie world</Link>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1  font-semibold">{navitems}</ul>

@@ -3,9 +3,10 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
-import f from '../../public/images/f.jpg'
-import j from '../../public/images/j.jpg'
-import n from '../../public/images/n.jpg'
+import fast from '../../public/images/fast.jpg'
+import secund from '../../public/images/secund.jpg'
+import third from '../../public/images/third.jpg'
+import five from '../../public/images/five.jpg'
 
 function Carosel() {
   return (
@@ -29,22 +30,18 @@ function Carosel() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className='h-[500px]' src={f} />
+          <img className='h-[500px]' src={fast} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={j} />
+          <img src={secund} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={n} />
+          <img src={third} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          <img src={five} />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-       
-       
+
       </Swiper>
    
   )
