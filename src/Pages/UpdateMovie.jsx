@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { Rating } from "react-simple-star-rating";
 import Select from "react-select";
 import { UserContext } from "../AuthProvider/AuthProvider";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 const genres = [
@@ -22,22 +22,26 @@ function UpdateMovie() {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
   const [selectedOption, setSelectedOption] = useState([]);
-  const genreValues = selectedOption.map((option) => option.value);
+   const navigate = useNavigate();
+  let genreValues = selectedOption.map((option) => option.value);
 
-  const genre =
-    movieData?.genres.map((genre) => ({ value: genre, label: genre })) || [];
-
-  console.log(genre);
-  console.log(movieData?.genres);
-  console.log(genres);
   useEffect(() => {
     const updatedMovieData = () => {
       if (!id) return;
       axios
-        .get(`https://movieworld-ochre.vercel.app/MoviesDtail/${id}`)
+        .get(`http://localhost:3000/MoviesDtail/${id}`)
         .then((res) => {
           setMovieData(res.data);
           setRating(res.data.rating);
+          if(res.data.genres){
+            setSelectedOption(
+              res.data.genres.map((genre) => ({
+                value: genre,
+                label: genre,
+              }))
+            );
+            console.log(res.data.genres)
+          }
         })
         .catch((err) => console.log(err));
     };
@@ -51,7 +55,7 @@ function UpdateMovie() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setLoading(true);
 
     const movieData = {
@@ -64,6 +68,7 @@ function UpdateMovie() {
       email: user.email,
     };
 
+    console.log(movieData.genres) 
     if (!movieData.Poster || !/^https?:\/\/.+\..+/.test(movieData.Poster)) {
       toast.error("Please provide a valid poster URL");
       setLoading(false);
@@ -92,8 +97,8 @@ function UpdateMovie() {
       return;
     }
 
-    axios
-      .patch(`https://movieworld-ochre.vercel.app/updateMovie/${id}`, movieData)
+  await  axios
+      .patch(`http://localhost:3000/updateMovie/${id}`, movieData)
       .then((res) => {
         toast.success("movie updated successfully");
         setSelectedOption([]);
@@ -101,20 +106,16 @@ function UpdateMovie() {
         reset();
         setLoading(false);
         console.log(res.data);
-      });
+        navigate('/AllMovies')
+      }).catch(e=>(
+        toast.error(e.message)
+      ))
 
-    //   if (response.status === 200) {
-    //     toast.success("movie updated successfully");
-    //     setSelectedOption([]);
-    //     setRating(0);
-    //     reset();
-    //     setLoading(false);
-    //   }
-
-    //   toast.error(error);
-    //   toast.error(`${error} - failed update movie`);
-    //   setLoading(false);
   };
+
+  if (!movieData) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="w-[80%] mt-8 mx-auto">
@@ -127,7 +128,7 @@ function UpdateMovie() {
           className="border p-2 rounded "
           required
           defaultValue={movieData?.Poster}
-          {...register("Poster", { required: true })}
+          {...register("Poster")}
         />
         <div>
           <input
@@ -136,7 +137,7 @@ function UpdateMovie() {
             required
             defaultValue={movieData?.Title}
             {...register("Title", {
-              required: true,
+             
               minLength: {
                 value: 2,
                 message: "Title should be at least 2 characters long!",
@@ -149,16 +150,30 @@ function UpdateMovie() {
         </div>
 
         <Select
+        defaultValue={
+          movieData?.genres.map((genre) => ({ value: genre, label: genre }))
+          
+        }
           isMulti
           name="genres"
-          defaultValue={genre}
-          value={selectedOption}
+   
           options={genres}
           onChange={(options) => setSelectedOption(options)}
           className="basic-multi-select"
           classNamePrefix="select"
           placeholder="Select genre..."
         />
+
+{/* <Select
+    defaultValue={
+      movieData?.genres.map((genre) => ({ value: genre, label: genre }))
+    }
+    isMulti
+    name="colors"
+    options={genres}
+    className="basic-multi-select"
+    classNamePrefix="select"
+  /> */}
 
         <input
           placeholder="Duration"

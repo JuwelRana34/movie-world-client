@@ -11,7 +11,7 @@ function Home() {
     <>
     <Carosel/>
     <div className=" container mx-auto">
-      <h1 className=" font-bold text-2xl">FeaturedMovies: </h1>
+      <h1 className=" font-bold pl-6 mt-10 bg-clip-text text-transparent  bg-gradient-to-l from-rose-500 to-orange-500 text-3xl">FeaturedMovies: </h1>
       <FeaturedMovies/>
       
     </div>
