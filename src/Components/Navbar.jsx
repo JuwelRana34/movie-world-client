@@ -74,7 +74,7 @@ const HandelLogOut = () => {
           {navitems}
         </ul>
       </div>
-      <Link to={'/'} id="wname" className="btn text-transparent bg-clip-text bg-gradient-to-l text-lg from-red-500 to-orange-500 btn-ghost px-1 font-bold   md:text-2xl">Movie world</Link>
+      <Link to={'/'} id="wname" className="btn text-transparent bg-clip-text bg-gradient-to-l text-xl from-red-500 to-orange-500 btn-ghost px-1 font-bold   md:text-2xl">Movie world</Link>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1  font-semibold">{navitems}</ul>
@@ -104,10 +104,10 @@ const HandelLogOut = () => {
         </button>
       ) : !isLoading? <>
         <div className=" font-semibold">
-        <Link to="/Login" className="py-3 mr-2 px-5 rounded-lg bg-blue-500 text-white text-xs md:text-base">
+        <Link to="/Login" className="py-3 mr-2 px-5 rounded-lg bg-blue-500 text-white text-sm md:text-base">
           login
         </Link>
-        <Link to="/Register" className="py-3 px-5 rounded-lg bg-orange-500 text-white text-xs md:text-base">
+        <Link to="/Register" className="py-3 px-5 rounded-lg bg-orange-500 text-white text-sm md:text-base">
           register
         </Link>
         </div>

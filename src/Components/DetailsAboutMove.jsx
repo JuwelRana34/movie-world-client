@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import Loading from '../Pages/Loading'
+import Loading from "../Pages/Loading";
 import { Link, useNavigate, useParams } from "react-router";
 import { Rating } from "react-simple-star-rating";
 import doc from "../../public/images/doc.gif";
 import video from "../../public/images/video-player.gif";
 import { toast } from "sonner";
 import { UserContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 function DetailsAboutMove() {
   const { id } = useParams();
@@ -29,13 +30,29 @@ function DetailsAboutMove() {
   }, [id]);
 
   const handelDelete = (id) => {
-    axios
-      .delete(`https://movieworld-ochre.vercel.app/MoviesDtail/${id}`)
-      .then(() => {
-        toast.success("movie deleted successfully");
-        navigate("/AllMovies");
-      })
-      .catch((err) => console.log(err));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`https://movieworld-ochre.vercel.app/MoviesDtail/${id}`)
+          .then(() => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your movie has been deleted.",
+              icon: "success",
+            });
+            navigate("/AllMovies");
+          })
+          .catch((err) => toast.error(err));
+      }
+    });
   };
 
   const handelAddFavorite = async (movieData) => {
@@ -45,7 +62,6 @@ function DetailsAboutMove() {
         const favoriteMovies = res.data.filter(
           (movie) =>
             movie.Title === movieData.Title && movie.email === user.email
-          
         );
 
         if (favoriteMovies.length === 0) {
@@ -67,7 +83,7 @@ function DetailsAboutMove() {
   };
 
   if (!moviedata.Title) {
-     return <Loading/>
+    return <Loading />;
   }
 
   return (
