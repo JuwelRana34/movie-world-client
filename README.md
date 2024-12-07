@@ -3,7 +3,7 @@
 Welcome to **movie world**, a video platform. which will give you lots of content like drama, movie, sires ect. you enjoy that.  
 
 ## 🌐 Live Demo  
-[firebase Live](https://user-manage-28a01.web.app/)  
+[Firebase Live](https://user-manage-28a01.web.app/) [Netlify Live](https://movie-worldbd.netlify.app/)  
 
 ---
 
