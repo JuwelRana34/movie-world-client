@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa6";
 import Loading from "./Loading";
 import { Link } from "react-router";
 import img from "../../public/images/not-found.gif";
+import { Rating } from "react-simple-star-rating";
 function AllMovies() {
   const [movies, setMovies] = useState([]);
   const [loadingdata, setLoadingData] = useState(true);
@@ -55,60 +56,61 @@ function AllMovies() {
         </svg>
       </label>
 
-      <div className="mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className=" mx-auto container px-2 gap-5 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {movies.length === 0 ? (
           <h1 className=" flex items-center justify-center col-span-3 text-xl text-center font-semibold text-gray-500">
-            {" "}
             Movie not found. <img className="w-14" src={img} alt="" />
           </h1>
         ) : (
           <>
-            {movies.map((movie) => {
+            {movies.map((movie, index) => {
               return (
                 <div
                   key={movie._id}
-                  className="movie-details text-center border transition-all"
+                  className=" relative md:mx-auto md:w-80 p-2 text-gray-300 h-96  rounded-md shadow bg-blend-overlay "
+                  style={{
+                    backgroundImage: ` linear-gradient(0deg, #000000, rgba(0,0,0,0.1)) ,url(${movie.Poster})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    
+                  }}
                 >
-                  <h1 className="text-center text-xl font-bold py-2 text-blue-500">
-                    {movie.Title}
-                  </h1>
-                  <img
-                    className="mx-auto w-64"
-                    src={movie.Poster}
-                    alt={movie.Title}
-                  />
-                  <div className="text-start  w-6/12 mx-auto">
-                    <p>
-                      <strong>Duration: </strong>
-                      {movie.Duration} minutes
-                    </p>
-                    <p>
-                      <strong>Release Year: </strong>
-                      {movie.ReleaseYear}
-                    </p>
-                    <p className="text-justify">
-                      <strong>Summary: </strong>
-                      {movie.Summary}
-                    </p>
-                    <p className="flex items-center gap-1 font-semibold">
-                      <strong>Rating: </strong>{" "}
-                      <FaStar className="text-orange-500 text-xl" />{" "}
-                      {movie.rating}/5
-                    </p>
-
-                    <ul className="flex justify-start gap-3">
-                      <h3 className=" font-semibold">Genres:</h3>
-                      {movie.genres.map((genre, index) => (
-                        <li key={index}>{genre},</li>
-                      ))}
-                    </ul>
+                  <div >
+                    <div className="bg-gradient-to-t  w-full h-full from-black to-transparent absolute bottom-0 pl-2 left-0 flex flex-col justify-end">
+                    <h1 className="text-2xl capitalize font-semibold">{movie.Title}</h1>
+                    <p className="font-semibold">Release Year: {movie.ReleaseYear}</p>
+                    <p className="font-semibold">Duration: {movie.Duration} minutes</p>
+                    <div className="text-gray-200  flex items-center gap-2 text-md font-semibold">
+                      Rating:
+                      {/* <Rating
+                        count={movie.rating}
+                        className="flex"
+                        initialValue={movie.rating}
+                        readonly
+                      /> */}
+                      <FaStar className="text-yellow-400" />
+                      {`${movie.rating}/5`}
+                    </div>
+                    <div>
+                    <span className=" font-semibold">genres:</span> {movie?.genres?.map((i, index) => (
+                    <span
+                      className="px-1"
+                      key={index}
+                    >
+                      #{i}
+                    </span>
+                  ))}
+                    </div>
+                    <Link to={`/detailMovie/${movie._id}`} className={`rounded-md font-semibold w-fit mx-1 px-3 py-2 my-2 ${
+                        index % 2 === 0 ? "bg-gray-600" : "bg-gray-600"
+                      }`} >See Details</Link>
                   </div>
-                  <Link
-                    to={`/detailMovie/${movie._id}`}
-                    className="btn  btn-success text-white my-2"
-                  >
-                    See Details
-                  </Link>
+
+                  
+                  </div>
+                  
+
+
                 </div>
               );
             })}

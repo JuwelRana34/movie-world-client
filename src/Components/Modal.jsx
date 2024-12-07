@@ -1,24 +1,36 @@
+import { Rating } from "react-simple-star-rating";
 
 function Modal() {
   return (
-    <div>
-        <dialog id="my_modal_1" className="modal">
-  <div className="modal-box">
-   
-    <p className="py-4"> Congrats! you have successfully <span className='text-orange-500 '>Subscribe. </span> </p>
-    
-    <img className=" mx-auto w-full md:w-64 h-auto" src="https://img.freepik.com/free-vector/party-balloons-with-stars-decoration-event_24877-54078.jpg?t=st=1733496928~exp=1733500528~hmac=93e91044138a44d35c31b6ac812c39477281f5ee7ebce61070c7437ad02d1748&w=740"/>
+    <>
+      {/* <div className=" rounded-md shadow "
+        style={{
+          backgroundImage: `url(${""})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h1 className="text-3xl font-semibold">{''}</h1>
+        <div className="text-gray-600 py-4 flex items-center gap-3 text-lg font-semibold">
+              Rating:
+              <Rating
+                count={rating}
+                className="flex text-sm"
+                initialValue={rating}
+                readonly
+              /> {`${rating}`/5}
+            </div>
 
-    <div className="modal-action">
-      <form method="dialog">
-        
-        <button className="btn btn-error text-white">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-    </div>
-  )
+            {moviedata?.genres?.map((i, index) => (
+                <button className={`rounded-md mx-1 ${index % 2 === 0 ? 'bg-orange-500':'bg-fuchsia-500'}`} key={index}>
+                 
+                  {i}
+                </button>
+              ))}
+
+      </div> */}
+    </>
+  );
 }
 
-export default Modal
+export default Modal;

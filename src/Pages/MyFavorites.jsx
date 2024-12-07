@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../AuthProvider/AuthProvider";
 import axios from "axios";
-import { FaStar } from "react-icons/fa";
 import { toast } from "sonner";
 import Loading from "./Loading";
+import { Rating } from "react-simple-star-rating";
+import { Link } from "react-router";
 
 function MyFavorites() {
   const { user } = useContext(UserContext);
@@ -38,49 +39,53 @@ function MyFavorites() {
   }
 
   return (
-    <div className=" mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className=" mx-auto container gap-3 px-2 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {FavoritesMovies.map((movie) => {
         return (
-          <div key={movie._id} className="movie-details text-center border">
-            <h1 className="text-center text-xl font-bold py-2 text-blue-500">
-              {movie.Title}
-            </h1>
-            <img
-              className="mx-auto w-64"
-              src={movie.Poster}
-              alt={movie.Title}
-            />
-            <div className="text-start  w-6/12 mx-auto">
-              <p>
-                <strong>Duration: </strong>
-                {movie.Duration} minutes
-              </p>
-              <p>
-                <strong>Release Year: </strong>
-                {movie.ReleaseYear}
-              </p>
-              <p className="text-justify">
-                <strong>Summary: </strong>
-                {movie.Summary}
-              </p>
-              <p className="flex items-center gap-1 font-semibold">
-                <strong>Rating: </strong>{" "}
-                <FaStar className="text-orange-500 text-xl" /> {movie.rating}/5
-              </p>
-
-              <ul className="flex justify-start gap-3">
-                <h3 className=" font-semibold">Genres:</h3>
-                {movie.genres.map((genre, index) => (
-                  <li key={index}>{genre},</li>
-                ))}
-              </ul>
+          <div
+            key={movie._id}
+            className=" relative md:mx-auto md:w-80 p-2 text-gray-300 h-96  rounded-md shadow bg-blend-overlay "
+            style={{
+              backgroundImage: ` linear-gradient(0deg, #000000, rgba(0,0,0,0.1)) ,url(${movie.Poster})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              
+            }}
+          >
+            <div >
+              <div className="bg-gradient-to-t  w-full h-full from-black to-transparent absolute bottom-0 pl-2 left-0 flex flex-col justify-end">
+              <h1 className="text-2xl capitalize font-semibold">{movie.Title}</h1>
+              <p className="font-semibold">Release Year: {movie.ReleaseYear}</p>
+              <p className="font-semibold">Duration: {movie.Duration} minutes</p>
+              <div className="text-gray-200  flex items-center gap-2 text-md font-semibold">
+                Rating:
+                <Rating
+                  count={movie.rating}
+                  className="flex"
+                  initialValue={movie.rating}
+                  readonly
+                />
+                {`${movie.rating}/5`}
+              </div>
+              <div>
+              <span className=" font-semibold">genres:</span> {movie?.genres?.map((i, index) => (
+              <span
+                className="px-1"
+                key={index}
+              >
+                #{i}
+              </span>
+            ))}
+              </div>
+              <Link onClick={handelDeleteFavorite} to={`/detailMovie/${movie._id}`} className={`rounded-md font-semibold w-fit  mx-1 px-3 py-2 my-3  bg-rose-600/90`} >Delete Favorite</Link>
+                
             </div>
-            <button
-              onClick={() => handelDeleteFavorite(movie._id)}
-              className="btn btn-primary"
-            >
-              Delete Favorite
-            </button>
+
+            
+            </div>
+            
+
+
           </div>
         );
       })}

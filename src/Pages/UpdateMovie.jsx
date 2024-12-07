@@ -6,6 +6,7 @@ import Select from "react-select";
 import { UserContext } from "../AuthProvider/AuthProvider";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import Loading from "./Loading";
 
 const genres = [
   { value: "Action", label: "Action" },
@@ -22,25 +23,25 @@ function UpdateMovie() {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
   const [selectedOption, setSelectedOption] = useState([]);
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   let genreValues = selectedOption.map((option) => option.value);
 
   useEffect(() => {
     const updatedMovieData = () => {
       if (!id) return;
       axios
-        .get(`http://localhost:3000/MoviesDtail/${id}`)
+        .get(`https://movieworld-ochre.vercel.app/MoviesDtail/${id}`)
         .then((res) => {
           setMovieData(res.data);
           setRating(res.data.rating);
-          if(res.data.genres){
+          if (res.data.genres) {
             setSelectedOption(
               res.data.genres.map((genre) => ({
                 value: genre,
                 label: genre,
               }))
             );
-            console.log(res.data.genres)
+            console.log(res.data.genres);
           }
         })
         .catch((err) => console.log(err));
@@ -68,7 +69,7 @@ function UpdateMovie() {
       email: user.email,
     };
 
-    console.log(movieData.genres) 
+    console.log(movieData.genres);
     if (!movieData.Poster || !/^https?:\/\/.+\..+/.test(movieData.Poster)) {
       toast.error("Please provide a valid poster URL");
       setLoading(false);
@@ -97,8 +98,8 @@ function UpdateMovie() {
       return;
     }
 
-  await  axios
-      .patch(`http://localhost:3000/updateMovie/${id}`, movieData)
+    await axios
+      .patch(`https://movieworld-ochre.vercel.app/updateMovie/${id}`, movieData)
       .then((res) => {
         toast.success("movie updated successfully");
         setSelectedOption([]);
@@ -106,15 +107,13 @@ function UpdateMovie() {
         reset();
         setLoading(false);
         console.log(res.data);
-        navigate('/AllMovies')
-      }).catch(e=>(
-        toast.error(e.message)
-      ))
-
+        navigate("/AllMovies");
+      })
+      .catch((e) => toast.error(e.message));
   };
 
   if (!movieData) {
-    return <p>Loading...</p>;
+    return <Loading></Loading>;
   }
 
   return (
@@ -137,7 +136,6 @@ function UpdateMovie() {
             required
             defaultValue={movieData?.Title}
             {...register("Title", {
-             
               minLength: {
                 value: 2,
                 message: "Title should be at least 2 characters long!",
@@ -150,13 +148,12 @@ function UpdateMovie() {
         </div>
 
         <Select
-        defaultValue={
-          movieData?.genres.map((genre) => ({ value: genre, label: genre }))
-          
-        }
+          defaultValue={movieData?.genres.map((genre) => ({
+            value: genre,
+            label: genre,
+          }))}
           isMulti
           name="genres"
-   
           options={genres}
           onChange={(options) => setSelectedOption(options)}
           className="basic-multi-select"
@@ -164,16 +161,7 @@ function UpdateMovie() {
           placeholder="Select genre..."
         />
 
-{/* <Select
-    defaultValue={
-      movieData?.genres.map((genre) => ({ value: genre, label: genre }))
-    }
-    isMulti
-    name="colors"
-    options={genres}
-    className="basic-multi-select"
-    classNamePrefix="select"
-  /> */}
+        
 
         <input
           placeholder="Duration"
