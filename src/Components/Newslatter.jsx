@@ -27,6 +27,7 @@ function Newslatter() {
             className="appearance-none block w-full bg-white/80 text-gray-700   rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white/90"
             type="text"
             name="email"
+            required
             placeholder="Your Email"
           />
           <button

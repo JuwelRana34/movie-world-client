@@ -44,7 +44,8 @@ function DetailsAboutMove() {
       .then((res) => {
         const favoriteMovies = res.data.filter(
           (movie) =>
-            movie.Title === movieData.Title && movie.email === movieData.email
+            movie.Title === movieData.Title && movie.email === user.email
+          
         );
 
         if (favoriteMovies.length === 0) {
