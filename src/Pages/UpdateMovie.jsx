@@ -16,15 +16,26 @@ const genres = [
   { value: "Romance", label: "Romance" },
 ];
 
+const years=[
+  { value: 2021, label: '2021' },
+  { value: 2022, label: '2022' },
+  { value: 2023, label: '2023' },
+  { value: 2024, label: '2024' },
+ 
+]
+
 function UpdateMovie() {
   const { id } = useParams();
   const { user } = useContext(UserContext);
   const [movieData, setMovieData] = useState();
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
+  const [ReleaseYear, setReleaseYear]= useState() 
   const [selectedOption, setSelectedOption] = useState([]);
   const navigate = useNavigate();
   let genreValues = selectedOption.map((option) => option.value);
+console.log(ReleaseYear)
+
 
   useEffect(() => {
     const updatedMovieData = () => {
@@ -34,6 +45,7 @@ function UpdateMovie() {
         .then((res) => {
           setMovieData(res.data);
           setRating(res.data.rating);
+          setReleaseYear(res.data.ReleaseYear)
           if (res.data.genres) {
             setSelectedOption(
               res.data.genres.map((genre) => ({
@@ -41,7 +53,7 @@ function UpdateMovie() {
                 label: genre,
               }))
             );
-            console.log(res.data.genres);
+            
           }
         })
         .catch((err) => console.log(err));
@@ -62,7 +74,7 @@ function UpdateMovie() {
     const movieData = {
       ...data,
       Duration: Number(data.Duration),
-      ReleaseYear: Number(data.ReleaseYear),
+      ReleaseYear: Number(ReleaseYear),
       Poster: data.Poster,
       rating,
       genres: genreValues,
@@ -172,13 +184,22 @@ function UpdateMovie() {
           {...register("Duration", { required: true, type: "number" })}
         />
 
-        <select {...register("ReleaseYear")} className=" border p-2 rounded">
+        {/* <select {...register("ReleaseYear")} className=" border p-2 rounded">
           <option value="year">Year</option>
           <option value="2021">2021</option>
           <option value="2022">2022</option>
           <option value="2023">2023</option>
           <option value="2024">2024</option>
-        </select>
+        </select> */}
+
+<Select
+        className="basic-single"
+        classNamePrefix="select"
+        defaultValue={ years.find(year=> year.value === movieData?.ReleaseYear)  }
+        onChange={(year) => setReleaseYear(year.value)}
+        name="year"
+        options={years}
+      />
 
         <div className="flex items-center font-semibold gap-4">
           <h1>Rating:</h1>

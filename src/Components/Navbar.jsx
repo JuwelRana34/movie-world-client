@@ -90,10 +90,10 @@ const HandelLogOut = () => {
     </div>
 
     <div className="navbar-end">
-
+  {location.pathname === '/' &&
     <button onClick={toggleTheme} className=" mr-1 md:mr-3">
       {theme === "light" ?<MdOutlineLightMode className="text-xl text-black" />:  <LuMoonStar className="text-xl text-white"  /> }
-    </button>
+    </button>}
 
     {user? <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
         <div
