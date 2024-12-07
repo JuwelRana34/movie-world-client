@@ -12,11 +12,12 @@ import DetailsAboutMove from "../Components/DetailsAboutMove";
 import UpdateMovie from "../Pages/UpdateMovie";
 import Subscribe from "../Pages/Subscribe";
 
+
 const AppRoute = () => {
   return(
     <Routes>
-    <Route path="/" element={<App />}>
-      <Route index element={<Home />} />
+    <Route path="/" element={ <App />}>
+      <Route index element={ <Home />} />
       <Route path="AllMovies" element={ <PrivetRoutes> <AllMovies /> </PrivetRoutes> } />
       <Route path="AddMovie" element={<PrivetRoutes> <AddMovie /> </PrivetRoutes>} />
       <Route path="MyFavorites" element={<PrivetRoutes><MyFavorites /> </PrivetRoutes> } />

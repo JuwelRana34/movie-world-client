@@ -1,10 +1,16 @@
 import { useContext, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router"
 import { UserContext } from "../AuthProvider/AuthProvider";
+import ThemeContext from "../AuthProvider/ThemeProvider";
+import { LuMoonStar } from "react-icons/lu";
 
+import { MdOutlineLightMode } from "react-icons/md";
 
 function Navbar() {
+  const location = useLocation();
   const {LogOut ,user, isLoading} =useContext(UserContext)
+  const {resetTheme} =useContext(ThemeContext)
+  const {theme , toggleTheme} = useContext(ThemeContext)
 
     const navitems = <>
      <NavLink to={'/'}>
@@ -25,8 +31,11 @@ function Navbar() {
     
     </>
 
-const location = useLocation();
- 
+useEffect(()=>{
+  if(location.pathname !== '/'){
+    resetTheme() 
+}},[location, resetTheme])
+
 useEffect(() => {
   const Titles = {
     "/": "Home | movie-world",
@@ -82,6 +91,10 @@ const HandelLogOut = () => {
 
     <div className="navbar-end">
 
+    <button onClick={toggleTheme} className=" mr-1 md:mr-3">
+      {theme === "light" ?<MdOutlineLightMode className="text-xl text-black" />:  <LuMoonStar className="text-xl text-white"  /> }
+    </button>
+
     {user? <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
         <div
           tabIndex={0}
@@ -104,10 +117,11 @@ const HandelLogOut = () => {
         </button>
       ) : !isLoading? <>
         <div className=" font-semibold">
-        <Link to="/Login" className="py-3 mr-2 px-5 rounded-lg bg-blue-500 text-white text-sm md:text-base">
+          
+        <Link to="/Login" className="py-2 mr-1 px-3 rounded-lg bg-blue-500 text-white text-sm md:text-base">
           login
         </Link>
-        <Link to="/Register" className="py-3 px-5 rounded-lg bg-orange-500 text-white text-sm md:text-base">
+        <Link to="/Register" className="py-2 px-3 rounded-lg bg-orange-500 text-white text-sm md:text-base">
           register
         </Link>
         </div>
