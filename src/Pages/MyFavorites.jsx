@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "sonner";
 import Loading from "./Loading";
 import { Rating } from "react-simple-star-rating";
-import { Link } from "react-router";
 
 function MyFavorites() {
   const { user } = useContext(UserContext);
@@ -77,7 +76,7 @@ function MyFavorites() {
               </span>
             ))}
               </div>
-              <Link onClick={handelDeleteFavorite} to={`/detailMovie/${movie._id}`} className={`rounded-md font-semibold w-fit  mx-1 px-3 py-2 my-3  bg-rose-600/90`} >Delete Favorite</Link>
+              <button onClick={()=>handelDeleteFavorite(movie._id)} className={`rounded-md font-semibold w-fit  mx-1 px-3 py-2 my-3  bg-rose-600/90`} >Delete Favorite</button>
                 
             </div>
 

@@ -74,7 +74,7 @@ function DetailsAboutMove() {
             className="w-full md:w-[30%] rounded-lg shadow-2xl"
           />
           <div className="md:w-[70%]  md:px-10">
-            <h1 className=" text-4xl md:text-5xl bg-gradient-to-r from-rose-600 to-green-700 bg-clip-text text-transparent  font-bold">
+            <h1 className=" text-4xl md:text-5xl bg-gradient-to-bl from-rose-600 to-orange-600 bg-clip-text text-transparent  font-bold">
               {moviedata.Title}
             </h1>
             <p className="text-gray-600 md:flex gap-2 items-center text-lg py-4">

@@ -72,7 +72,7 @@ return (
     </div>
   </div>
 
-  <div className="py-8 bg-gradient-to-br from-blue-400 to-fuchsia-500 text-white w-fit border mx-auto px-4 rounded-md">
+  <div className="py-8 bg-gradient-to-br from-rose-400 to-orange-500 text-white w-fit border mx-auto px-4 rounded-md">
     
     <h1 className=" flex flex-col justify-center text-center my-4 font-bold text-xl">
       standard
@@ -125,7 +125,7 @@ return (
   </div>
 
 
-  <div className="py-8 bg-gradient-to-br from-blue-400 to-fuchsia-500 text-white w-fit border mx-auto px-4 rounded-md">
+  <div className="py-8 bg-gradient-to-br from-teal-500 to-fuchsia-500 text-white w-fit border mx-auto px-4 rounded-md">
    
     <h1 className=" flex flex-col justify-center text-center my-4 font-bold text-xl">
     Premium

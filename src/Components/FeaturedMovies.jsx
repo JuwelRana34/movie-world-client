@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { FaStar } from "react-icons/fa6";
+import { Rating } from "react-simple-star-rating";
 
 function FeaturedMovies() {
   const [featuredMovies, setFeaturedMovies] = useState([]);
@@ -20,7 +21,7 @@ function FeaturedMovies() {
 
   return (
     <div className=" mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {featuredMovies.map((movie ,index) => {
+      {featuredMovies.map((movie ) => {
         return (
           <div
             key={movie._id}
@@ -40,7 +41,12 @@ function FeaturedMovies() {
               <div className="text-gray-200  flex items-center gap-2 text-md font-semibold">
                 Rating:
                 
-                <FaStar className="text-yellow-500" />
+                <Rating
+                  count={movie.rating}
+                  className="flex"
+                  initialValue={movie.rating}
+                  readonly
+                />
                 {`${movie.rating}/5`}
               </div>
               <div>
@@ -53,9 +59,7 @@ function FeaturedMovies() {
               </span>
             ))}
               </div>
-              <Link to={`/detailMovie/${movie._id}`} className={`rounded-md font-semibold w-fit mx-1 px-3 py-2 my-2 ${
-                  index % 2 === 0 ? "bg-gray-600" : "bg-gray-600"
-                }`} >See Details</Link>
+              <Link to={`/detailMovie/${movie._id}`} className={`rounded-md font-semibold w-fit  mx-1 px-3 py-2 my-3  bg-rose-600/90`}  >See Details</Link>
             </div>
 
             
