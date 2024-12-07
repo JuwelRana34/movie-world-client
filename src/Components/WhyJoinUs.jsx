@@ -7,7 +7,7 @@ function WhyJoinUs() {
   return (
     <>
     
-     <h1 className=" font-bold text-3xl capitalize bg-clip-text text-transparent  bg-gradient-to-l from-rose-500 to-orange-500 "> Reasons to join: </h1>
+     <h1 className=" pl-4 font-bold text-3xl capitalize bg-clip-text text-transparent  bg-gradient-to-l from-rose-500 to-orange-500 "> Reasons to join: </h1>
     <div className=" grid grid-cols-1 px-2 my-5 text-lg md:grid-cols-4 w-[80%] md:w-full lg:w-[80%] gap-5 mx-auto">
        
         <div className="bg-gradient-to-bl from-green-500 to-lime-500 border h-28  p-2 rounded-lg relative ">

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-
+import Loading from '../Pages/Loading'
 import { Link, useNavigate, useParams } from "react-router";
 import { Rating } from "react-simple-star-rating";
 import doc from "../../public/images/doc.gif";
@@ -64,6 +64,10 @@ function DetailsAboutMove() {
         }
       });
   };
+
+  if (!moviedata.Title) {
+     return <Loading/>
+  }
 
   return (
     <div className="mt-5">

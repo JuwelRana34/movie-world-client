@@ -20,7 +20,7 @@ function FeaturedMovies() {
   }, []);
 
   return (
-    <div className=" mx-auto container gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className=" mx-auto container px-2 gap-3 my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {featuredMovies.map((movie ) => {
         return (
           <div

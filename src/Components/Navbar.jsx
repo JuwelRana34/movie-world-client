@@ -51,7 +51,7 @@ const HandelLogOut = () => {
     <div className="navbar bg-base-100 container sticky  z-10 mx-auto">
     <div className="navbar-start">
       <div className="dropdown">
-        <div tabIndex={0} role="button" className="btn px-3 btn-ghost lg:hidden">
+        <div tabIndex={0} role="button" className="btn px-1 btn-ghost lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 "
@@ -74,7 +74,7 @@ const HandelLogOut = () => {
           {navitems}
         </ul>
       </div>
-      <Link to={'/'} id="wname" className="btn text-transparent bg-clip-text bg-gradient-to-l text-base from-red-500 to-orange-500 btn-ghost px-1 font-bold   md:text-2xl">Movie world</Link>
+      <Link to={'/'} id="wname" className="btn text-transparent bg-clip-text bg-gradient-to-l text-lg from-red-500 to-orange-500 btn-ghost px-1 font-bold   md:text-2xl">Movie world</Link>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1  font-semibold">{navitems}</ul>

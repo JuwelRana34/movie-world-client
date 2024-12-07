@@ -1,9 +1,9 @@
-# [Movie world]  
+# Movie world  
 
-Welcome to **[movie world]**, a [video platform. which will give you lots of content like drama, movie, sires ect. you enjoy that.].  
+Welcome to **movie world**, a video platform. which will give you lots of content like drama, movie, sires ect. you enjoy that.  
 
 ## 🌐 Live Demo  
-[Live Site](https://user-manage-28a01.web.app/)  
+[firebase Live](https://user-manage-28a01.web.app/)  
 
 ---
 
@@ -28,12 +28,12 @@ Welcome to **[movie world]**, a [video platform. which will give you lots of con
 - **Hosting:** [ Vercel for backend, Netlify and firebase for frontend]   
 
 ---
-npm Packages Used
-react-router-dom: For handling dynamic routing within the application.
-daisyui: For short time design beautiful user interfaces.
-sonner: a toaster for beautiful toast.
-swiper: for awesome animation slider.
-react-icons: for icon it use.
-react-simple-star-rating: for showing dynamic rating stars.
-sweetalert2: it is used for show organized alert.
-axios: it is used for data fatching , post , update and delete form database.  
+## npm Packages Used
+- `react-router-dom`: For handling dynamic routing within the application.
+- `daisyui`: For short time design beautiful user interfaces.
+- `sonner`: a toaster for beautiful toast.
+- `swiper`: for awesome animation slider.
+- `react-icons`: for icon it use.
+  react-simple-star-rating: for showing dynamic rating stars.
+- `sweetalert2`: it is used for show organized alert.
+- `axios`: it is used for data fatching , post , update and       delete -form database.  
