@@ -18,7 +18,7 @@ const AppRoute = () => {
     <Routes>
     <Route path="/" element={ <App />}>
       <Route index element={ <Home />} />
-      <Route path="AllMovies" element={ <PrivetRoutes> <AllMovies /> </PrivetRoutes> } />
+      <Route path="AllMovies" element={ <AllMovies /> } />
       <Route path="AddMovie" element={<PrivetRoutes> <AddMovie /> </PrivetRoutes>} />
       <Route path="MyFavorites" element={<PrivetRoutes><MyFavorites /> </PrivetRoutes> } />
       <Route path="Login" element={<Login />} />

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Carosel from "../Components/Carosel";
 import FeaturedMovies from "../Components/FeaturedMovies";
 import Newslatter from "../Components/Newslatter";
@@ -13,6 +14,14 @@ function Home() {
           FeaturedMovies:{" "}
         </h1>
         <FeaturedMovies />
+        <div className="text-center py-10">
+        <Link
+          to="/AllMovies"
+          className="py-3 px-5 rounded-md bg-gradient-to-r from-rose-500  to-orange-600 text-white font-semibold  "
+        >
+          See all movies
+        </Link>
+      </div>
         <WhyJoinUs />
         <Newslatter />
       </div>

@@ -85,7 +85,7 @@ const HandelLogOut = () => {
       <ul className="menu menu-horizontal px-1  font-semibold">{navitems}</ul>
     </div>
 
-    <div className="navbar-end">
+    <div className="navbar-end space-x-1">
   
     <button onClick={toggleTheme} className=" mr-1 md:mr-3">
       {theme === "light" ?<MdOutlineLightMode className="text-xl text-black" />:  <LuMoonStar className="text-xl text-white"  /> }
@@ -112,12 +112,12 @@ const HandelLogOut = () => {
           LogOut
         </button>
       ) : !isLoading? <>
-        <div className=" font-semibold">
+        <div className=" font-semibold space-x-1">
           
-        <Link to="/Login" className="py-2 mr-1 px-3 rounded-lg bg-blue-500 text-white text-sm md:text-base">
+        <Link to="/Login" className="py-3 mr-1 px-4 rounded-lg bg-blue-500 text-white text-sm md:text-base">
           login
         </Link>
-        <Link to="/Register" className="py-2 px-3 rounded-lg bg-orange-500 text-white text-sm md:text-base">
+        <Link to="/Register" className="py-3 px-4 rounded-lg bg-orange-500 text-white text-sm md:text-base">
           register
         </Link>
         </div>

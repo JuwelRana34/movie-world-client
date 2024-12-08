@@ -161,14 +161,7 @@ function DetailsAboutMove() {
         </div>
       </div>
 
-      <div className="text-center py-10">
-        <Link
-          to="/AllMovies"
-          className="py-3 px-5 rounded-md bg-gradient-to-r from-rose-500  to-orange-600 text-white font-semibold  "
-        >
-          See all movies
-        </Link>
-      </div>
+      
     </div>
   );
 }
