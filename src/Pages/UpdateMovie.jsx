@@ -235,7 +235,7 @@ function UpdateMovie() {
           {loading ? (
             <span className="loading loading-spinner text-white"></span>
           ) : (
-            "Add movie"
+            "Update Movie"
           )}
         </button>
       </form>
