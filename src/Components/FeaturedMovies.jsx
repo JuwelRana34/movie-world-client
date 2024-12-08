@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Rating } from "react-simple-star-rating";
-
+import ThemeContext from "../AuthProvider/ThemeProvider"
 function FeaturedMovies() {
   const [featuredMovies, setFeaturedMovies] = useState([]);
-
+ const {theme} = useContext(ThemeContext)
   useEffect(() => {
     const FeaturedMovies = () => {
       axios
@@ -61,7 +61,7 @@ function FeaturedMovies() {
               </span>
             ))}
               </div>
-              <Link to={`/detailMovie/${movie._id}`} className={`rounded-md font-semibold w-fit  mx-1 px-3 py-2 my-3  bg-rose-600/90`}  >See Details</Link>
+              <Link to={`/detailMovie/${movie._id}`} className={`rounded-md font-semibold w-fit  mx-1 px-3 py-2 my-3 ${theme ==='light'?" bg-rose-600/90" : 'bg-gray-700'}  `}  >See Details</Link>
             </div>
 
             

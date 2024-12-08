@@ -58,13 +58,7 @@ body {
   object-fit: cover;
 }
 
-#footer{
-  background-image: url('https://img.freepik.com/premium-vector/abstract-glossy-hexagon-pattern-background_1302-22441.jpg?ga=GA1.1.1974322130.1689523785&semt=ais_hybrid');
-  background-size: cover;
-  background-position: center;
-  background-repeat:  no-repeat;
- 
-}
+
 
 #fname,#wname{
   font-family: "Spicy Rice", serif;

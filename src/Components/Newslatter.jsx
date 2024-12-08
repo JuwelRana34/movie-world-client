@@ -20,7 +20,7 @@ function Newslatter() {
           });
     };
   return (
-    <div style={{backgroundImage:  "linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.1)),  url(https://image-chorki.gotipath.com/uploads/images/2024/08/25/app_cover_images_a7ae3fd5b75465ee96775d70c20fbd91_goplay_subscription_page_banner_1.png?w=640&q=75)"}} className=" bg-fuchsia-200 p-4 rounded-md bg-cover bg-center">
+    <div style={{backgroundImage:  "linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.1)),  url(https://image-chorki.gotipath.com/uploads/images/2024/08/25/app_cover_images_a7ae3fd5b75465ee96775d70c20fbd91_goplay_subscription_page_banner_1.png?w=640&q=75)"}} className=" bg-fuchsia-200 p-4 rounded-md  bg-cover bg-center">
         
         <form onSubmit={handelNewslatter} className="flex backdrop-blur-sm rounded-md bg-white/40  flex-wrap w-full max-w-3xl my-10 mx-auto p-6" >
           <input
