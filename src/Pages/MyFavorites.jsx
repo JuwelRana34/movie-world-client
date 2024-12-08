@@ -26,7 +26,7 @@ function MyFavorites() {
 
   const handelDeleteFavorite = (id) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: "Are you sure delete movie from favorite ?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,

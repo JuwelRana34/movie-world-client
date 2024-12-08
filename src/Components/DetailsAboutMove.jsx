@@ -29,9 +29,9 @@ function DetailsAboutMove() {
     movieDetails();
   }, [id]);
 
-  const handelDelete = (id) => {
+  const handelDelete = (id , title) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: `Are you sure want to delete "${title}" movie?`,
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -100,7 +100,7 @@ function DetailsAboutMove() {
             </h1>
             <p className="text-gray-600 md:flex gap-2 items-center text-lg py-4">
               <img className="w-14" src={doc} alt="" />
-              <span className="font-bold"> summary: </span> {moviedata.Summary}
+              <h1 > <span className="font-bold text-xl"> summary : </span>  {moviedata.Summary}</h1> 
             </p>
 
             <hr className=" border-gray-500" />
@@ -139,7 +139,7 @@ function DetailsAboutMove() {
             <hr className=" border-gray-500 " />
             <div className="my-4 grid grid-cols-3 md:flex space-x-2">
               <button
-                onClick={() => handelDelete(moviedata._id)}
+                onClick={() => handelDelete(moviedata._id, moviedata.Title)}
                 className=" py-2 px-3 rounded-md bg-gradient-to-r from-rose-500 to-orange-500 font-semibold text-white "
               >
                 Delete Movie
@@ -164,7 +164,7 @@ function DetailsAboutMove() {
       <div className="text-center py-10">
         <Link
           to="/AllMovies"
-          className="py-2 px-5 rounded-md bg-gradient-to-r from-rose-500  to-orange-600 text-white font-semibold  "
+          className="py-3 px-5 rounded-md bg-gradient-to-r from-rose-500  to-orange-600 text-white font-semibold  "
         >
           See all movies
         </Link>

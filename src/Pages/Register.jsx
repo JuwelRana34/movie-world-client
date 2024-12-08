@@ -55,13 +55,13 @@ function Register() {
 
   return (
     <>
-      <div id="register" className=' py-1 '>
-        <div className=" my-10 border-gray-400  bg-black/80 rounded-lg md:w-1/2 mx-auto p-4">
+      <div id="register" className=' py-1  '>
+        <div className=" my-10 bg-base-100 border border-gray-600 backdrop-blur-sm  bg-black/40 rounded-lg md:w-1/2 mx-auto p-4">
           <h1 className="text-center text-white my-4 capitalize font-bold text-xl">
             registration
           </h1>
           <form onSubmit={HandelsignUp} className=" space-y-4  gap-5">
-            <label className="input border border-gray-500  bg-black/5 input-bordered flex items-center gap-2 ">
+            <label className="input border border-gray-500  bg-black/60 input-bordered flex items-center gap-2 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -78,7 +78,7 @@ function Register() {
                 placeholder="Type your name"
               />
             </label>
-            <label className="input input-bordered flex  border-gray-500  bg-black/5 items-center gap-2 pt-0">
+            <label className="input input-bordered flex  border-gray-500  bg-black/60 items-center gap-2 pt-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -103,7 +103,7 @@ function Register() {
               />
             </label>
 
-            <label className="input input-bordered flex  border-gray-500  bg-black/5 items-center gap-2 ">
+            <label className="input input-bordered flex  border-gray-500  bg-black/60 items-center gap-2 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -122,7 +122,7 @@ function Register() {
               />
             </label>
 
-            <label className="input input-bordered flex  border-gray-500  bg-black/5 items-center gap-2 ">
+            <label className="input input-bordered flex  border-gray-500  bg-black/60 items-center gap-2 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"

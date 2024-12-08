@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 
 const ThemeContext = createContext()
+ // eslint-disable-next-line react/prop-types
  export const  ThemeProvider = ({children})=> {
   const [theme, setTheme] = useState(()=>{
     return localStorage.getItem('theme') || "light"
@@ -14,11 +15,9 @@ const ThemeContext = createContext()
   const toggleTheme = () => {
     setTheme((prev)=> (prev === "light" ? "dark" :"light"))
   }
-  const resetTheme = () => {
-    setTheme("light");
-  };
+
   const value = {
-    theme , toggleTheme ,resetTheme
+    theme , toggleTheme
   }
 
   return (

@@ -5,7 +5,7 @@ import responsive from '../../public/images/responsive.png'
 
 function WhyJoinUs() {
   return (
-    <>
+    <div className='my-20'>
     
      <h1 className=" pl-4 font-bold text-3xl capitalize bg-clip-text text-transparent  bg-gradient-to-l from-rose-500 to-orange-500 "> Reasons to join: </h1>
     <div className=" grid grid-cols-1 px-2 my-5 text-lg md:grid-cols-4 w-[80%] md:w-full lg:w-[80%] gap-5 mx-auto">
@@ -18,7 +18,7 @@ function WhyJoinUs() {
             </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-transparent border h-28 p-2 relative rounded-lg  ">
+        <div className="bg-gradient-to-br from-orange-500 to-slate-200 border h-28 p-2 relative rounded-lg  ">
             <h1 className="font-semibold text-slate-50">Cancel or switch plans anytime</h1>
             <div className='flex justify-end'>
 
@@ -43,7 +43,7 @@ function WhyJoinUs() {
         </div>
 
     </div>
-    </>
+    </div>
   )
 }
 

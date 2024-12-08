@@ -9,7 +9,6 @@ import { MdOutlineLightMode } from "react-icons/md";
 function Navbar() {
   const location = useLocation();
   const {LogOut ,user, isLoading} =useContext(UserContext)
-  const {resetTheme} =useContext(ThemeContext)
   const {theme , toggleTheme} = useContext(ThemeContext)
 
     const navitems = <>
@@ -31,10 +30,7 @@ function Navbar() {
     
     </>
 
-useEffect(()=>{
-  if(location.pathname !== '/'){
-    resetTheme() 
-}},[location, resetTheme])
+
 
 useEffect(() => {
   const Titles = {
@@ -90,10 +86,10 @@ const HandelLogOut = () => {
     </div>
 
     <div className="navbar-end">
-  {location.pathname === '/' &&
+  
     <button onClick={toggleTheme} className=" mr-1 md:mr-3">
       {theme === "light" ?<MdOutlineLightMode className="text-xl text-black" />:  <LuMoonStar className="text-xl text-white"  /> }
-    </button>}
+    </button>
 
     {user? <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
         <div

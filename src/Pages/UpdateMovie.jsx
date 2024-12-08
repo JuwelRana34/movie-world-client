@@ -34,7 +34,7 @@ function UpdateMovie() {
   const [selectedOption, setSelectedOption] = useState([]);
   const navigate = useNavigate();
   let genreValues = selectedOption.map((option) => option.value);
-console.log(ReleaseYear)
+
 
 
   useEffect(() => {
@@ -81,19 +81,19 @@ console.log(ReleaseYear)
       email: user.email,
     };
 
-    console.log(movieData.genres);
+
     if (!movieData.Poster || !/^https?:\/\/.+\..+/.test(movieData.Poster)) {
       toast.error("Please provide a valid poster URL");
       setLoading(false);
       return;
     }
 
-    if (Array.isArray(movieData.genres) && movieData.genres.length <= 0) {
+    if (!Array.isArray(movieData.genres) || movieData.genres.length <= 0 ) {
       toast.error("Please select genre");
       setLoading(false);
       return;
     }
-    if (movieData.Duration <= 60 && isNaN(movieData.Duration)) {
+    if ( isNaN(movieData.Duration) || movieData.Duration <= 60 ) {
       toast.error("Duration should be more than 60 minutes");
       setLoading(false);
       return;

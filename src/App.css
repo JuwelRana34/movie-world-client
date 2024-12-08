@@ -1,5 +1,5 @@
 .active {
-  background-color: rgb(0, 57, 96);
+  background: linear-gradient(90deg, orange, rgba(255, 0, 81, 0.906));
   color: #fff;
   border-radius: 5px;
 }

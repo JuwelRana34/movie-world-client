@@ -3,6 +3,7 @@ import { IoLogoGithub } from "react-icons/io"
 import { Link } from "react-router"
 import img from '../../public/images/video-player.gif'
 import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md"
+import { FaLocationDot } from "react-icons/fa6"
 
 function Footer() {
   return (
@@ -21,6 +22,7 @@ function Footer() {
       <h6 className="footer-title">Contact us</h6>
       <a className="link link-hover flex items-center gap-2"> <MdOutlinePhone className="text-xl" />01761632836</a>
       <a className="link link-hover flex items-center gap-2"><MdOutlineMailOutline className="text-xl" />juwelrana@gmail.com</a>
+      <a className="link link-hover flex items-center gap-2"><FaLocationDot  className="text-xl" />Level-6, 38, Awal Centre, Banani, Dhaka</a>
      
     </nav>
     <nav>
