@@ -5,11 +5,11 @@ import Footer from './Components/Footer'
 function App() {
 
   return (
-    <>
+    <div className='bg-slate-100'>
     <Navbar/>
     <Outlet/>
     <Footer/>
-    </>
+    </div>
   )
 }
 

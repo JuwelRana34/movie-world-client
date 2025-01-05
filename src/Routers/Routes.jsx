@@ -11,6 +11,7 @@ import Notfound from "../Pages/Notfound";
 import DetailsAboutMove from "../Components/DetailsAboutMove";
 import UpdateMovie from "../Pages/UpdateMovie";
 import Subscribe from "../Pages/Subscribe";
+import ContactUs from "../Pages/ContactUs";
 
 
 const AppRoute = () => {
@@ -24,8 +25,9 @@ const AppRoute = () => {
       <Route path="Login" element={<Login />} />
       <Route path="Register" element={<Register />} />
       <Route path="Subscribe" element={<Subscribe />} />
+      <Route path="ContactUs" element={<ContactUs />} />
       <Route path="UpdateMovie/:id" element={<PrivetRoutes><UpdateMovie /></PrivetRoutes>} />
-      <Route path="detailMovie/:id" element={<PrivetRoutes> < DetailsAboutMove/> </PrivetRoutes>} />
+      <Route path="detailMovie/:id" element={ < DetailsAboutMove/> } />
       
      
     </Route>
