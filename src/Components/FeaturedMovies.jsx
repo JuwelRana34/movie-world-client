@@ -29,7 +29,7 @@ function FeaturedMovies() {
           {featuredMovies.map((movie) => {
             return (
               <div
-                className=" bg-white p-5 rounded-md w-full md:w-fit shadow-sm"
+              className={`${theme === "dark"? "bg-gray-700":"bg-white "}  p-5 rounded-md w-full md:w-fit shadow-sm`}
                 key={movie._id}
               >
                 <div

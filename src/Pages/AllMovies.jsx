@@ -1,14 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import Loading from "./Loading";
 import { Link } from "react-router";
 import img from "../../public/images/not-found.gif";
+import ThemeContext from "../AuthProvider/ThemeProvider";
 
 function AllMovies() {
   const [movies, setMovies] = useState([]);
   const [loadingdata, setLoadingData] = useState(true);
   const [scarch, setScarch] = useState("");
+  const { theme} = useContext(ThemeContext);
 
   useEffect(() => {
     const movies = () => {
@@ -65,7 +67,7 @@ function AllMovies() {
           <>
             {movies.map((movie) => {
               return (
-                <div  key={movie._id} className=" bg-white p-5 rounded-md w-full md:w-fit shadow-sm">
+                <div  key={movie._id} className={`${theme === "dark"? "bg-gray-700":"bg-white "}  p-5 rounded-md w-full md:w-fit shadow-sm`}>
                   <div
                  
                   className=" relative md:mx-auto md:w-64 p-2 text-gray-300 h-96  rounded-md shadow bg-blend-overlay "

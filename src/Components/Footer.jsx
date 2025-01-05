@@ -9,7 +9,7 @@ import ThemeContext from '../AuthProvider/ThemeProvider'
 function Footer() {
   const {theme} = useContext(ThemeContext)
   return (
-    <div   style={{
+    <div  className="mt-10"  style={{
       backgroundImage:theme === "light" &&`url('https://img.freepik.com/premium-vector/abstract-glossy-hexagon-pattern-background_1302-22441.jpg?ga=GA1.1.1974322130.1689523785&semt=ais_hybrid')`  ,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -19,12 +19,12 @@ function Footer() {
     <footer className={`footer mt-5 bg-transparent  ${theme ==="dark"&& "text-gray-400 "} text-gray-500  p-10`}>
     <nav>
       <h6 className="footer-title">Services</h6>
-      <a className="link link-hover">
+      <a className="">
       Media Center</a>
-      <a className="link link-hover">
+      <a className="">
       Ways to Watch</a>
-      <a className="link link-hover">Drama</a>
-      <a className="link link-hover">Live stream</a>
+      <a className="">Drama</a>
+      <a className="">Live stream</a>
     </nav>
     <nav>
       <h6 className="footer-title">Contact us</h6>
@@ -34,10 +34,10 @@ function Footer() {
      
     </nav>
     <nav>
-      <h6 className="footer-title">Legal</h6>
-      <a className="link link-hover">Terms of use</a>
-      <a className="link link-hover">Privacy policy</a>
-      <a className="link link-hover">Cookie policy</a>
+      <h6 className="footer-title">Useful Links</h6>
+      <Link to={'ContactUs'} className="link link-hover">ContactUs</Link>
+      <Link to={'Subscribe'} className="link link-hover">Subscribe</Link>
+      
     </nav>
   </footer>
 
