@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ThemeContext from "../AuthProvider/ThemeProvider";
+import { Link } from "react-router";
 
 const BlogSection = () => {
     const {theme}= useContext(ThemeContext)
@@ -54,9 +55,9 @@ const BlogSection = () => {
                   By {blog.author} on {blog.date}
                 </p>
                 <p className={`text-gray-600 mt-4 ${theme === "dark" && " text-slate-300"}`}>{blog.description}</p>
-                <button className="mt-6 text-blue-600 font-medium hover:underline">
+                <Link to={`/detail/blog/${blog.id}`} className="mt-6 text-blue-600 font-medium hover:underline">
                   Read More →
-                </button>
+                </Link>
               </div>
             </div>
           ))}
