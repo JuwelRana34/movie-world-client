@@ -30,6 +30,10 @@ function DetailsAboutMove() {
   }, [id]);
 
   const handelDelete = (id , title) => {
+    if (!user) {
+      toast.error("You are not user logged in and continue.");
+      return;
+    }
     Swal.fire({
       title: `Are you sure want to delete "${title}" movie?`,
       text: "You won't be able to revert this!",
@@ -56,6 +60,10 @@ function DetailsAboutMove() {
   };
 
   const handelAddFavorite = async (movieData) => {
+    if (!user) {
+      toast.error("You are not user logged in before.");
+      return;
+    }
     await axios
       .get(`https://movieworld-ochre.vercel.app/favoriteMovies`)
       .then((res) => {

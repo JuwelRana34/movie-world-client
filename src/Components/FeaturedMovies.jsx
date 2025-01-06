@@ -19,7 +19,7 @@ function FeaturedMovies() {
   }, []);
 
   return (
-    <div className="container mx-auto justify-items-center px-2 lg:justify-items-start md:px-0  gap-3 my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div className="container mx-auto justify-items-center px-2 lg:justify-items-start md:px-0  gap-3 my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {featuredMovies.length === 0 ? (
         <h1 className="flex items-center  col-span-3 animate-pulse text-2xl text-center font-semibold text-gray-500">
           Loading...

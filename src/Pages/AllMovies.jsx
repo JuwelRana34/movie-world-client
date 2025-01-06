@@ -10,12 +10,13 @@ function AllMovies() {
   const [movies, setMovies] = useState([]);
   const [loadingdata, setLoadingData] = useState(true);
   const [scarch, setScarch] = useState("");
+  const [sort, setSort] = useState();
   const { theme} = useContext(ThemeContext);
-
+console.log(movies)
   useEffect(() => {
     const movies = () => {
       axios
-        .get("https://movieworld-ochre.vercel.app/")
+        .get(`https://movieworld-ochre.vercel.app/?sort=${sort}&scarchMove=${scarch}`)
         .then((res) => {
           setMovies(res.data);
           setLoadingData(false);
@@ -23,13 +24,8 @@ function AllMovies() {
         .catch((err) => console.log(err));
     };
     movies();
-  }, []);
+  }, [sort,scarch]);
 
-  useEffect(() => {
-    axios
-      .get(`https://movieworld-ochre.vercel.app?scarchMove=${scarch}`)
-      .then(({ data }) => setMovies(data));
-  }, [scarch]);
 
   if (loadingdata) {
     return <Loading />;
@@ -58,7 +54,15 @@ function AllMovies() {
         </svg>
       </label>
 
-      <div className="container mx-auto justify-items-center px-2 lg:justify-items-start md:px-0  gap-3 my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className={` ${theme === "dark"?"dark:bg-gray-700": "bg-white"}  container mx-auto rounded mb-10 p-2 text-end font-semibold`}>
+        <select onChange={(e)=> setSort(e.target.value) } className="w-fit p-2 bg-slate-200 rounded focus:outline-none">
+          <option value=''>Sort by rating</option>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
+
+      <div className="container mx-auto justify-items-center px-2 lg:justify-items-start md:px-0  gap-3 my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {movies.length === 0 ? (
           <h1 className=" flex items-center justify-center col-span-3 text-xl text-center font-semibold text-gray-500">
             Movie not found. <img className="w-14" src={img} alt="" />
