@@ -5,6 +5,7 @@ import Newslatter from "../Components/Newslatter";
 import WhyJoinUs from "../Components/WhyJoinUs";
 import { useContext } from "react";
 import ThemeContext from "../AuthProvider/ThemeProvider";
+import BlogSection from "../Components/BlogSection";
 
 function Home() {
   const { theme } = useContext(ThemeContext);
@@ -37,6 +38,7 @@ function Home() {
         </div>
         <WhyJoinUs />
         <Newslatter />
+        <BlogSection/>
       </div>
     </div>
   );
