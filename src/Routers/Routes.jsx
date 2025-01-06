@@ -13,6 +13,7 @@ import UpdateMovie from "../Pages/UpdateMovie";
 import Subscribe from "../Pages/Subscribe";
 import ContactUs from "../Pages/ContactUs";
 import DetailBlog from "../Components/DetailBlog";
+import ManeageAll from "../Pages/ManeageAll";
 
 
 const AppRoute = () => {
@@ -27,6 +28,7 @@ const AppRoute = () => {
       <Route path="Register" element={<Register />} />
       <Route path="Subscribe" element={<Subscribe />} />
       <Route path="ContactUs" element={<ContactUs />} />
+      <Route path="manage-items" element={<PrivetRoutes><ManeageAll /></PrivetRoutes>} />
       <Route path="/detail/blog/:id" element={<DetailBlog />} />
       <Route path="UpdateMovie/:id" element={<PrivetRoutes><UpdateMovie /></PrivetRoutes>} />
       <Route path="detailMovie/:id" element={ < DetailsAboutMove/> } />

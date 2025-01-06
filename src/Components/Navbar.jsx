@@ -36,6 +36,11 @@ function Navbar() {
               <a>My Favorites</a>
             </li>
           </NavLink>
+          <NavLink to={"/manage-items"}>
+            <li>
+              <a>manage movies</a>
+            </li>
+          </NavLink>
         </>
       )}
 
@@ -60,8 +65,10 @@ function Navbar() {
       "/AddMovie": "AddMovie | movie-world",
       "/MyFavorites": "MyFavorites | movie-world",
       "/passwordReset": "passwordReset | movie-world",
-      "/Register": "Register | movie-world",
+      "/Register": "Register | movie-world",     
+      "/Subscribe": "Subscribe | movie-world",     
       "/ContactUs": "ContactUs | movie-world",
+      "/manage-items": "manage-movies | movie-world",
     };
 
     const basePath = location.pathname.split("/")[1];
@@ -76,8 +83,8 @@ function Navbar() {
   return (
     <div
       className={` ${
-        theme === "dark" && "dark:bg-black/45"
-      } sticky top-0 z-10  backdrop-blur-md  bg-white/30`}
+        theme === "dark" ? "bg-black/45":"bg-white/30"
+      } sticky top-0 z-10  backdrop-blur-md  `}
     >
       <div className="navbar  container    mx-auto">
         <div className="navbar-start">

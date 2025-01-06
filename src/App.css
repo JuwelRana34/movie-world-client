@@ -62,3 +62,7 @@ body {
 #fname,#wname{
   font-family: "Spicy Rice", serif;
 }
+
+.edit{
+  margin-top: 0 !important;
+}

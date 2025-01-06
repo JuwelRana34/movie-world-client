@@ -51,12 +51,12 @@ function AddMovie() {
       setLoading(false);
       return;
     }
-    if (movieData.Duration <= 60 && isNaN(movieData.Duration)) {
+    if (movieData.Duration <= 60 || isNaN(movieData.Duration)) {
       toast.error("Duration should be more than 60 minutes");
       setLoading(false);
       return;
     }
-    if (movieData.rating <= 0 && isNaN(movieData.rating)) {
+    if (movieData.rating <= 0 || isNaN(movieData.rating)) {
       toast.error("must be select rated");
       setLoading(false);
       return;

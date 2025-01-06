@@ -1,19 +1,19 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Loading from "../Pages/Loading";
-import { Link, useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { Rating } from "react-simple-star-rating";
 import doc from "../../public/images/doc.gif";
 import video from "../../public/images/video-player.gif";
 import { toast } from "sonner";
 import { UserContext } from "../AuthProvider/AuthProvider";
-import Swal from "sweetalert2";
+
 
 function DetailsAboutMove() {
   const { id } = useParams();
   const [moviedata, setMovieData] = useState({});
   const [rating, setRating] = useState(0);
-  const navigate = useNavigate();
+  
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -29,35 +29,6 @@ function DetailsAboutMove() {
     movieDetails();
   }, [id]);
 
-  const handelDelete = (id , title) => {
-    if (!user) {
-      toast.error("You are not user logged in and continue.");
-      return;
-    }
-    Swal.fire({
-      title: `Are you sure want to delete "${title}" movie?`,
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .delete(`https://movieworld-ochre.vercel.app/MoviesDtail/${id}`)
-          .then(() => {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your movie has been deleted.",
-              icon: "success",
-            });
-            navigate("/AllMovies");
-          })
-          .catch((err) => toast.error(err));
-      }
-    });
-  };
 
   const handelAddFavorite = async (movieData) => {
     if (!user) {
@@ -146,24 +117,14 @@ function DetailsAboutMove() {
             </p>
             <hr className=" border-gray-500 " />
             <div className="my-4 grid grid-cols-3 md:flex space-x-2">
-              <button
-                onClick={() => handelDelete(moviedata._id, moviedata.Title)}
-                className=" py-2 px-3 rounded-md bg-gradient-to-r from-rose-500 to-orange-500 font-semibold text-white "
-              >
-                Delete Movie
-              </button>
+              
               <button
                 onClick={() => handelAddFavorite(moviedata)}
                 className="  py-2 px-3 rounded-md bg-gradient-to-r from-orange-500 to-yellow-500 font-semibold text-white "
               >
                 Add to Favorite
               </button>
-              <Link
-                to={`/UpdateMovie/${moviedata._id}`}
-                className=" hover:scale-110 hover:transition-all py-2 px-3 rounded-md bg-gradient-to-r from-rose-500 to-orange-500 font-semibold text-white "
-              >
-                Update movie
-              </Link>
+              
             </div>
           </div>
         </div>
